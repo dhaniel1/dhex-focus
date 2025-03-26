@@ -1,0 +1,57 @@
+.app_timer {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+
+  &_intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem auto;
+  }
+
+  &_tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  &_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    &_pomodoro {
+      height: 25rem;
+      width: 25rem;
+      border-radius: 50%;
+      border: 6px solid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(236, 244, 255, 0.6);
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(236, 244, 255, 1);
+      }
+
+      &_content {
+        margin-top: 50%;
+        transform: translateY(-50%);
+
+        .timer {
+          font-size: 6rem;
+        }
+
+        .level {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
