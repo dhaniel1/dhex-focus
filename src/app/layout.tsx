@@ -6,6 +6,7 @@ import "../../public/sass/main.scss";
 import "./globals.css";
 import { NavBar, SideNav } from "@/components";
 import PomodoroProvider from "@/store/timer/pomodoroProvider";
+import { SessionProvider } from "@/store/timer/pomodoroProviders";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,17 +31,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <PomodoroProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <main className="app_layout">
-            <SideNav />
-            <div className="app_layout_main">
-              <NavBar />
-              {children}
-            </div>
-          </main>
-        </body>
+        <SessionProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <main className="app_layout">
+              <SideNav />
+              <div className="app_layout_main">
+                <NavBar />
+                {children}
+              </div>
+            </main>
+          </body>
+        </SessionProvider>
       </PomodoroProvider>
     </html>
   );

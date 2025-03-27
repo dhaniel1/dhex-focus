@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/tabs";
 import { capitaize, cn } from "@/lib/utils";
 import { usePomodoroContext } from "@/store/timer/pomodoroContext";
-import { focusLevels, FocusLevelType } from "@/lib/utils/static";
+import { TimeType } from "@/lib/utils/static";
+import { Button } from "..";
+import { useMounted } from "@/hooks";
+import { useSessionContext } from "@/store/timer/pomodoroContexts";
 
 interface TabItem {
-  value: string;
+  value: TimeType;
   rate: number;
   label?: string;
-  Component: React.ElementType;
 }
 
 interface IProps {
@@ -23,16 +25,16 @@ interface IProps {
 }
 
 const Tabs: FC<IProps> = ({ tabs }) => {
+  const mounted = useMounted();
   const {
     state: { focusLevel },
   } = usePomodoroContext();
 
-  const activeFocusLevel = focusLevels.find(
-    (item) => Object.keys(item)[0] === focusLevel
-  );
+  const { setActiveTab, activeTab, formattedTime, start, isActive, stop } =
+    useSessionContext();
 
-  const activeFocusLevelValues =
-    activeFocusLevel![focusLevel as FocusLevelType];
+  console.log("I double render - fix me");
+  if (!mounted) return null;
 
   return (
     <ShadCNTabs
@@ -40,35 +42,52 @@ const Tabs: FC<IProps> = ({ tabs }) => {
       className="w-3/4 items-center gap-15"
     >
       <TabsList>
-        {tabs?.map(({ value, label, rate }) => (
-          <TabsTrigger
-            key={value}
-            value={value}
-            className={cn("text-[#069668]", {
-              "text-[#2463EB]": value === "timer",
-            })}
-          >
-            <>
-              {(label && capitaize(label)) || capitaize(value)}
-              <span className="font-extrabold ml-1.5">{rate}</span>
-            </>
-          </TabsTrigger>
-        ))}
+        {tabs?.map(({ value, label, rate }) => {
+          return (
+            <TabsTrigger
+              key={value}
+              value={value}
+              disabled={isActive && value !== activeTab}
+              onClick={() => setActiveTab(value)}
+              className={cn("text-[#069668]", {
+                "text-[#2463EB]": value === "timer",
+              })}
+            >
+              <>
+                {(label && capitaize(label)) || capitaize(value)}
+                <span className="font-extrabold ml-1.5">{rate}</span>
+              </>
+            </TabsTrigger>
+          );
+        })}
       </TabsList>
 
-      {tabs?.map(({ value, Component }) => {
+      {tabs?.map(({ value }) => {
         return (
           <TabsContent key={value} value={value}>
-            {Component && (
-              <Component
-                value={value}
-                activeFocusLevelValues={activeFocusLevelValues}
-                focusLevel={focusLevel}
-                className={cn("text-[#069668] border-[#D5EAE1]", {
-                  "text-[#2463EB] border-[#d5e0fb]": value === "timer",
-                })}
+            <section className="app_timer_body">
+              <div
+                className={cn(
+                  "app_timer_body_pomodoro text-[#069668] border-[#D5EAE1]",
+                  [value === "timer" && "text-[#2463EB] border-[#d5e0fb]"]
+                )}
+              >
+                <div className="app_timer_body_pomodoro_content">
+                  <h2 className="timer">{formattedTime}</h2>
+                  <div className="text-center mt-5 level">
+                    <p>Level</p>
+                    <p className="font-bold ">{capitaize(focusLevel)}</p>
+                  </div>
+                </div>
+              </div>
+              <Button
+                variant="primary"
+                size="xl"
+                label={isActive ? "stop" : "start"}
+                onClick={isActive ? stop : start}
+                className="bolder uppercase w-full py-10 text-4xl justify-center! rounded-full"
               />
-            )}
+            </section>
           </TabsContent>
         );
       })}

@@ -10,15 +10,13 @@ import AlarmSettings from "./alarmSetting";
 import AutoStartSetting from "./autoStartSetting";
 import NotificationSetting from "./notificationSetting";
 import { Separator } from "../ui/separator";
+import { useSessionContext } from "@/store/timer/pomodoroContexts";
 
 const extra = ["Skip to break", "Skip to long break"];
 
 const Settings: FC = () => {
-  const [activeSetting, setActiveSetting] = useState<string | null>(
-    null
-    /*  SETTINGSTYPE.Alarm */
-  );
-
+  const [activeSetting, setActiveSetting] = useState<string | null>(null);
+  const { isActive } = useSessionContext();
   function makeActive(value: string | null) {
     setActiveSetting(value);
     return;
@@ -35,6 +33,7 @@ const Settings: FC = () => {
               variant="ghost"
               size="lg"
               iconAfter={ArrowRightIcon}
+              disabled={isActive && title === SETTINGSTYPE.FocusLevel}
               className="w-full p-8 pr-4 text-lg font-extrabold"
               iconClassName="fill-pink w-10 h-10"
               iconAfterClassName="ml-auto"
@@ -46,20 +45,21 @@ const Settings: FC = () => {
             </Button>
           );
         })}
-        <Separator className="my-4" />
-        {extra.map((title) => {
-          return (
-            <Button
-              key={title}
-              variant="ghost"
-              size="lg"
-              className="w-full justify-start text-left p-7 text-lg "
-              onClick={() => alert(title)}
-            >
-              {title}
-            </Button>
-          );
-        })}
+        {!isActive && <Separator className="my-4" />}
+        {!isActive &&
+          extra.map((title) => {
+            return (
+              <Button
+                key={title}
+                variant="ghost"
+                size="lg"
+                className="w-full justify-start text-left p-7 text-lg "
+                onClick={() => alert(title)}
+              >
+                {title}
+              </Button>
+            );
+          })}
       </div>
     );
   }
