@@ -36,16 +36,23 @@ export const SessionProvider: FC<Iprop> = ({ children }) => {
     activeFocusLevelValues![activeTab]
   );
 
+  const [sessionState /* setSessionState */] = useState({
+    timer: 0,
+    rest: 0,
+    longRest: 0,
+  });
+
   return (
     <SessionContext.Provider
       value={{
-        formattedTime,
-        start,
         stop,
-        music: "Lofi",
+        start,
+        isActive,
         activeTab,
         setActiveTab,
-        isActive,
+        sessionState,
+        music: "Lofi",
+        formattedTime,
       }}
     >
       {children}

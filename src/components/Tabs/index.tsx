@@ -16,7 +16,6 @@ import { useSessionContext } from "@/store/timer/pomodoroContexts";
 
 interface TabItem {
   value: TimeType;
-  rate: number;
   label?: string;
 }
 
@@ -30,8 +29,15 @@ const Tabs: FC<IProps> = ({ tabs }) => {
     state: { focusLevel },
   } = usePomodoroContext();
 
-  const { setActiveTab, activeTab, formattedTime, start, isActive, stop } =
-    useSessionContext();
+  const {
+    setActiveTab,
+    sessionState,
+    activeTab,
+    formattedTime,
+    start,
+    isActive,
+    stop,
+  } = useSessionContext();
 
   console.log("I double render - fix me");
   if (!mounted) return null;
@@ -42,7 +48,7 @@ const Tabs: FC<IProps> = ({ tabs }) => {
       className="w-3/4 items-center gap-15"
     >
       <TabsList>
-        {tabs?.map(({ value, label, rate }) => {
+        {tabs?.map(({ value, label }) => {
           return (
             <TabsTrigger
               key={value}
@@ -55,7 +61,9 @@ const Tabs: FC<IProps> = ({ tabs }) => {
             >
               <>
                 {(label && capitaize(label)) || capitaize(value)}
-                <span className="font-extrabold ml-1.5">{rate}</span>
+                <span className="font-extrabold ml-1.5">
+                  {sessionState[value]}
+                </span>
               </>
             </TabsTrigger>
           );

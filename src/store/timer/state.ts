@@ -1,5 +1,5 @@
 export const initialPomodoroState = {
-  focusLevel: "popular",
+  focusLevel: "baby step",
   autoStart: {
     pomodoro: true,
     breaks: true,

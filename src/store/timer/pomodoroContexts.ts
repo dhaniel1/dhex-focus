@@ -31,17 +31,27 @@ interface ISessionContext {
   start: () => void;
   stop: () => void;
   activeTab: TimeType;
+  sessionState: {
+    timer: number;
+    rest: number;
+    longRest: number;
+  };
   setActiveTab: Dispatch<SetStateAction<TimeType>>;
 }
 
 export const SessionContext = createContext<ISessionContext>({
-  formattedTime: "",
   music: "",
   isActive: false,
   activeTab: "rest",
-  setActiveTab: () => undefined,
-  start: () => undefined,
+  formattedTime: "",
+  sessionState: {
+    timer: 0,
+    rest: 0,
+    longRest: 0,
+  },
   stop: () => undefined,
+  start: () => undefined,
+  setActiveTab: () => undefined,
 });
 
 export const useSessionContext = () => {
