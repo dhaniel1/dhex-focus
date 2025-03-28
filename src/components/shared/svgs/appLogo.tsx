@@ -1,6 +1,6 @@
 import React, { SVGProps } from "react";
 
-export default function AppLogo(props: SVGProps<SVGAElement>) {
+export default function AppLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="200"
