@@ -8,7 +8,7 @@ export const initialPomodoroState = {
     soundType: "long",
     alarmVolumeLevel: 90,
   },
-  notifications: false,
+  notifications: true,
   preferedLanguage: "english",
 };
 

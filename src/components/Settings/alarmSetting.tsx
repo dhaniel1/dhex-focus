@@ -33,7 +33,7 @@ const SoundsButton = () => {
               "font-medium text-md not-first:rounded-tl-none not-first:rounded-bl-none not-last:rounded-tr-none not-last:rounded-br-none",
               {
                 "bg-accent font-bold text-accent-foreground":
-                  soundType == item.toLowerCase(),
+                  soundType.toLowerCase() == item.toLowerCase(),
               }
             )}
           >
@@ -73,13 +73,11 @@ const AlarmSettings = () => {
           min={0}
           value={alarmVolumeLevel}
           step={5}
-          onChange={
-            (e: React.ChangeEvent<HTMLInputElement>) =>
-              dispatch({
-                type: POMODOROACTIONTYPE.UpdateAlarmVolumeLevel,
-                payload: Number(e.target.value),
-              })
-            // setVolume(Number(e.target.value))
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            dispatch({
+              type: POMODOROACTIONTYPE.UpdateAlarmVolumeLevel,
+              payload: Number(e.target.value),
+            })
           }
           className="w-full!"
         />

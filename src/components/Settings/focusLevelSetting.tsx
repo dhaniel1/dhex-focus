@@ -27,18 +27,13 @@ const FocusLevelSetting = () => {
             });
           }}
         >
-          {focusLevels.map((focusLevel, i) => {
+          {focusLevels.map((focusLevel, index) => {
             const title = Object.keys(focusLevel)[0];
             const value = focusLevel[title as FocusLevelType];
 
             return (
-              <div className="w-full flex gap-6 items-start" key={i}>
-                <RadioGroupItem
-                  id={title}
-                  value={title}
-                  className="mt-2"
-                  checked={title === focusLevel}
-                />
+              <div className="w-full flex gap-6 items-start" key={index}>
+                <RadioGroupItem id={title} value={title} className="mt-2" />
 
                 <label htmlFor={title} className="w-full cursor-pointer">
                   <div className="flex flex-col gap-1 justify-between w-full font-bold">

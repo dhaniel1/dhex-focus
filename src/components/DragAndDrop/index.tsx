@@ -46,7 +46,7 @@ const DraggableItem: FC<IDraggableItem> = ({ id, text, index, moveItem }) => {
       )}
     >
       <RadioGroupItem id={text} value={text} />
-      <label htmlFor={text} className="cursor-move">
+      <label className="cursor-move">
         <div className="flex flex-col gap-1 justify-between w-full ">
           <p>{capitalize(text)}</p>
         </div>
