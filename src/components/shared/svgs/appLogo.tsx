@@ -1,13 +1,10 @@
-import React, { SVGProps } from "react";
-
-export default function AppLogo(props: SVGProps<SVGSVGElement>) {
+export default function AppLogo() {
   return (
     <svg
       width="200"
       height="100"
       viewBox="0 0 200 100"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
     >
       <circle
         cx="50"
