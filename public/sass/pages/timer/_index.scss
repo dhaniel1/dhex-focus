@@ -2,56 +2,69 @@
   width: 100%;
   height: 100%;
   margin: auto;
+  display: flex;
 
-  &_intro {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 4rem auto;
-  }
+  &_main {
+    width: 80%;
 
-  &_tabs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: auto;
-  }
+    &_intro {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 4rem auto;
+    }
 
-  &_body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-
-    &_pomodoro {
-      height: 25rem;
-      width: 25rem;
-      border-radius: 50%;
-      border: 6px solid;
+    &_tabs {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: rgba(236, 244, 255, 0.6);
+      justify-content: center;
+      margin-top: auto;
+    }
 
-      &:hover {
-        cursor: pointer;
-        background-color: rgba(236, 244, 255, 1);
-      }
+    &_body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
 
-      &_content {
-        margin-top: 50%;
-        transform: translateY(-50%);
+      &_pomodoro {
+        height: 25rem;
+        width: 25rem;
+        border-radius: 50%;
+        border: 6px solid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(236, 244, 255, 0.6);
 
-        .timer {
-          font-size: 6rem;
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(236, 244, 255, 1);
         }
 
-        .level {
-          font-size: 1.5rem;
+        &_content {
+          margin-top: 50%;
+          transform: translateY(-50%);
+
+          .timer {
+            font-size: 6rem;
+          }
+
+          .level {
+            font-size: 1.5rem;
+          }
         }
       }
     }
+  }
+
+  &_tasks {
+    width: 30%;
+    height: 100%;
+    border-left: 1px solid #cbd5e1;
+    margin-top: 5px;
+    padding: 1rem;
   }
 }

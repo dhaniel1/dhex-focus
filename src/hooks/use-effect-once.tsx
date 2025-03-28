@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-invalid-void-type */
 import { useEffect, useRef, useState } from "react";
 
 export function useEffectOnce(effect: () => void | (() => void)) {

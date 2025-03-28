@@ -7,7 +7,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
-import { capitaize, cn } from "@/lib/utils";
+import { capitalize, cn } from "@/lib/utils";
 import { usePomodoroContext } from "@/store/timer/pomodoroContext";
 import { TimeType } from "@/lib/utils/static";
 import { Button } from "..";
@@ -60,7 +60,7 @@ const Tabs: FC<IProps> = ({ tabs }) => {
               })}
             >
               <>
-                {(label && capitaize(label)) || capitaize(value)}
+                {(label && capitalize(label)) || capitalize(value)}
                 <span className="font-extrabold ml-1.5">
                   {sessionState[value]}
                 </span>
@@ -73,18 +73,18 @@ const Tabs: FC<IProps> = ({ tabs }) => {
       {tabs?.map(({ value }) => {
         return (
           <TabsContent key={value} value={value}>
-            <section className="app_timer_body">
+            <section className="app_timer_main_body">
               <div
                 className={cn(
-                  "app_timer_body_pomodoro text-[#069668] border-[#D5EAE1]",
+                  "app_timer_main_body_pomodoro text-[#069668] border-[#D5EAE1]",
                   [value === "timer" && "text-[#2463EB] border-[#d5e0fb]"]
                 )}
               >
-                <div className="app_timer_body_pomodoro_content">
+                <div className="app_timer_main_body_pomodoro_content">
                   <h2 className="timer">{formattedTime}</h2>
                   <div className="text-center mt-5 level">
                     <p>Level</p>
-                    <p className="font-bold ">{capitaize(focusLevel)}</p>
+                    <p className="font-bold ">{capitalize(focusLevel)}</p>
                   </div>
                 </div>
               </div>

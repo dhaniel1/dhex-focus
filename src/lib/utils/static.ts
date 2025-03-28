@@ -63,3 +63,10 @@ export const settings = [
 // type Settings = Record<string, unknown>;
 
 export const language = ["English", "Español", "Português"];
+
+export const todoList = [
+  { id: 1, todoItem: "✅ Finish the React drag-and-drop feature" },
+  { id: 2, todoItem: "📧 Respond to client emails" },
+  { id: 3, todoItem: "🎙️ Record the next podcast episode" },
+  { id: 4, todoItem: "🧠 Brainstorm marketing ideas for Pllugg" },
+];
