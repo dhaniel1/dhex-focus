@@ -5,8 +5,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../../public/sass/main.scss";
 import "./globals.css";
 import { NavBar, SideNav } from "@/components";
-import PomodoroProvider from "@/store/timer/pomodoroProvider";
 import { SessionProvider } from "@/store/timer/pomodoroProviders";
+import { PomodoroProvider } from "@/store";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

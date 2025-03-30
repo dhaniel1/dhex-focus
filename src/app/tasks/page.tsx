@@ -1,7 +1,20 @@
+"use client";
+
+// import { useTodoContext } from "@/store/todos";
 import React from "react";
 
-function Pomodoropage() {
-  return <div>Pomodoropage</div>;
+function TodoPage() {
+  /*   const {
+    states: { inProgress },
+  } = useTodoContext();
+
+  console.log("inProgress", inProgress); */
+
+  return (
+    <div className="app_todo">
+      <div className="app_todo board"></div>
+    </div>
+  );
 }
 
-export default Pomodoropage;
+export default TodoPage;

@@ -1,24 +1,43 @@
-import { todoList } from "@/lib/utils/static";
+"use client";
+
 import React from "react";
 import DragList from "../DragAndDrop";
 import Button from "../Button";
+import { useRouter } from "next/navigation";
+import { routes } from "@/lib/routes";
+import { useTodoContext } from "@/store/todos";
 
 const TodoPreview = () => {
+  const router = useRouter();
+  const {
+    states: { inProgress },
+  } = useTodoContext();
+
+  //   TODO: change initialTodoState to be gotten from the todo context
   return (
     <div className="w-full h-max">
-      <div className="flex justify-between mb-3 items-center">
-        <h2 className="text-left font-black  text-3xl">
-          Tasks
-          <span className="font-medium text-2xl pl-2">{todoList.length}</span>
-        </h2>
+      <div className="flex justify-between mb-5 items-start">
+        <div className="flex flex-col">
+          <h2 className="text-left font-bold  text-2xl">
+            Tasks in progress
+            <span className="font-medium text-xl pl-2">
+              {inProgress.length}
+            </span>
+          </h2>
+          <p className="text-primary text-sm pt-2">
+            Select to mark a completed
+          </p>
+        </div>
         <Button
           className="text-md font-medium"
           size="lg"
           variant="primary"
-          label="Manage Todo's"
-        />
+          onClick={() => router.push(routes.tasks.path)}
+        >
+          Manage Todos
+        </Button>
       </div>
-      <DragList dragList={todoList} />
+      <DragList />
     </div>
   );
 };

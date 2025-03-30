@@ -1,20 +1,24 @@
-// App.js
-
 import { capitalize, cn } from "@/lib/utils";
 import React, { FC, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { useTodoContext } from "@/store/todos";
 
 interface IDraggableItem {
   id: number;
   text: string;
   index: number;
   moveItem: (fromIndex: number, toIndex: number) => void;
+  ItemType: string;
 }
 
-const ItemType = "DRAGGABLE_ITEM";
-
-const DraggableItem: FC<IDraggableItem> = ({ id, text, index, moveItem }) => {
+const DraggableItem: FC<IDraggableItem> = ({
+  id,
+  text,
+  index,
+  moveItem,
+  ItemType,
+}) => {
   const ref = React.useRef(null);
 
   const [, drop] = useDrop({
@@ -55,13 +59,13 @@ const DraggableItem: FC<IDraggableItem> = ({ id, text, index, moveItem }) => {
   );
 };
 
-interface IDragList {
-  className?: string;
-  dragList: Array<{ id: number; todoItem: string }>;
-}
+const DragList: FC = () => {
+  const {
+    states: { inProgress },
+    // dispatch,
+  } = useTodoContext();
 
-const DragList: FC<IDragList> = ({ className, dragList }) => {
-  const [items, setItems] = useState(dragList);
+  const [items, setItems] = useState(inProgress);
 
   const moveItem = (fromIndex: number, toIndex: number) => {
     const updated = [...items];
@@ -69,22 +73,24 @@ const DragList: FC<IDragList> = ({ className, dragList }) => {
     updated.splice(toIndex, 0, moved);
     setItems(updated);
   };
-
+  const ItemType = "IN PROGRESS PREVIEW";
   return (
-    <div className={cn("m-auto w-full flex flex-col gap-2", className)}>
+    <div className="m-auto h-[80vh] w-full flex flex-col gap-2 overflow-scroll">
       <RadioGroup
-        defaultValue={"CHANGE ME"}
+        className="w-[99.6%] mx-auto"
+        defaultValue={"CHANGE ME"} // TODO: Fix defualt value
         onValueChange={(value) => {
           console.log(value);
         }}
       >
-        {items.map(({ id, todoItem }, index) => (
+        {items.map(({ id, description }, index) => (
           <DraggableItem
             key={id}
             id={id}
             index={index}
-            text={todoItem}
+            text={description}
             moveItem={moveItem}
+            ItemType={ItemType}
           />
         ))}
       </RadioGroup>

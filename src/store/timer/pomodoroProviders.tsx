@@ -1,10 +1,15 @@
 "use client";
 
 import { FC, ReactNode, useEffect, useReducer, useState } from "react";
-import { PomodoroContext, SessionContext } from "./pomodoroContexts";
-import { initialPomodoroState, PomodoroState } from "./state";
-import { PomodoroReducer } from "./pomodoroReducer";
 import { useActiveFocusLevel, useCountdown, usePersistedState } from "@/hooks";
+import {
+  PomodoroContext,
+  SessionContext,
+  PomodoroReducer,
+  initialPomodoroState,
+  type PomodoroState,
+} from ".";
+
 import { TimeType } from "@/lib/utils/static";
 
 interface Iprop {

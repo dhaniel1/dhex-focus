@@ -5,10 +5,7 @@ import { Button, Tabs } from "@/components";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TodoPreview } from "@/components/Todos";
-
-/* function TaskPreview (){
-  return 
-} */
+import { tabList } from "@/lib/utils/static";
 
 function Pomodoropage() {
   return (
@@ -25,19 +22,7 @@ function Pomodoropage() {
           </div>
 
           <div className="app_timer_main_tabs">
-            <Tabs
-              tabs={[
-                {
-                  value: "timer",
-                  label: "pomodoro",
-                },
-                { value: "rest" },
-                {
-                  value: "longRest",
-                  label: "long rest",
-                },
-              ]}
-            />
+            <Tabs tabs={tabList} />
           </div>
         </div>
         <div className="app_timer_tasks">

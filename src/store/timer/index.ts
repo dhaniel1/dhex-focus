@@ -1,5 +1,10 @@
-export { initialPomodoroState } from "./state";
+export { initialPomodoroState, type PomodoroState } from "./state";
 export { type PomodoroActions } from "./pomodoroActions";
-export { PomodoroContext, usePomodoroContext } from "./pomodoroContext";
-export { default as PomodoroProvider } from "./pomodoroProvider";
+export {
+  PomodoroContext,
+  usePomodoroContext,
+  SessionContext,
+  useSessionContext,
+} from "./pomodoroContexts";
+export { PomodoroProvider } from "./pomodoroProviders";
 export { PomodoroReducer } from "./pomodoroReducer";

@@ -8,11 +8,10 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { capitalize, cn } from "@/lib/utils";
-import { usePomodoroContext } from "@/store/timer/pomodoroContext";
 import { TimeType } from "@/lib/utils/static";
 import { Button } from "..";
 import { useMounted } from "@/hooks";
-import { useSessionContext } from "@/store/timer/pomodoroContexts";
+import { useSessionContext, usePomodoroContext } from "@/store/timer";
 
 interface TabItem {
   value: TimeType;

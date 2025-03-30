@@ -1,1 +1,14 @@
+.app_todo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.app_todo.board {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  background-color: aqua;
+}

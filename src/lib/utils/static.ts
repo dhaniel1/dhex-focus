@@ -9,10 +9,18 @@ import {
 import { routes } from "../routes";
 import { Itab } from "@/components/SideNav";
 
-export const sideNavTabs: Itab[] = [
-  { title: "Timer", icon: ClockIcon, url: routes.timer.path },
-  { title: "Tasks", icon: TasksIcon, url: routes.tasks.path },
-];
+export enum SETTINGSTYPE {
+  FocusLevel = "Focus Level",
+  Alarm = "Alarm",
+  AutoStart = "Auto Start",
+  Notification = "Notifications",
+}
+
+export enum POMODOROSTAGE {
+  POMODORO = "Pomodoro", // TODO: Confirm if this should be timer
+  REST = "Rest",
+  LONGREST = "Long Rest",
+}
 
 export type FocusLevelType = "baby step" | "popular" | "medium" | "extended";
 export type TimeType = "timer" | "rest" | "longRest";
@@ -26,6 +34,11 @@ export type TimeValues = {
 export type FocusLevel = {
   [key in FocusLevelType]?: TimeValues;
 };
+
+export const sideNavTabs: Itab[] = [
+  { title: "Timer", icon: ClockIcon, url: routes.timer.path },
+  { title: "Tasks", icon: TasksIcon, url: routes.tasks.path },
+];
 
 export const focusLevels: FocusLevel[] = [
   { "baby step": { timer: 10, rest: 5, longRest: 10 } },
@@ -41,19 +54,6 @@ export const alarmType = {
   mute: false,
 };
 
-export enum SETTINGSTYPE {
-  FocusLevel = "Focus Level",
-  Alarm = "Alarm",
-  AutoStart = "Auto Start",
-  Notification = "Notifications",
-}
-
-export enum POMODOROSTAGE {
-  POMODORO = "Pomodoro",
-  REST = "Rest",
-  LONGREST = "Long Rest",
-}
-
 export const settings = [
   { title: SETTINGSTYPE.FocusLevel, icon: ClockBoldIcon, children: {} },
   { title: SETTINGSTYPE.Alarm, icon: AlarmIcon, children: {} },
@@ -64,9 +64,14 @@ export const settings = [
 
 export const language = ["English", "Español", "Português"];
 
-export const todoList = [
-  { id: 1, todoItem: "✅ Finish the React drag-and-drop feature" },
-  { id: 2, todoItem: "📧 Respond to client emails" },
-  { id: 3, todoItem: "🎙️ Record the next podcast episode" },
-  { id: 4, todoItem: "🧠 Brainstorm marketing ideas for Pllugg" },
+export const tabList: Array<{ value: TimeType; label?: string }> = [
+  {
+    value: "timer",
+    label: "pomodoro",
+  },
+  { value: "rest" },
+  {
+    value: "longRest",
+    label: "long rest",
+  },
 ];
