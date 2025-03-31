@@ -19,7 +19,7 @@ function Tabs() {
   const pathName = usePathname();
 
   return (
-    <div className="app_layout_aside_items">
+    <div className="app_layout_content_aside_items">
       {sideNavTabs.map(({ title, icon: Icon, url }) => {
         const isActive = pathName.includes(title.toLowerCase());
 
@@ -27,7 +27,7 @@ function Tabs() {
           <Link
             href={url}
             key={title}
-            className={clsx("app_layout_aside_items_item", {
+            className={clsx("app_layout_content_aside_items_item", {
               active: isActive,
             })}
           >
@@ -42,14 +42,14 @@ function Tabs() {
 
 const Sidenav = () => {
   return (
-    <aside className="app_layout_aside">
+    <aside className="app_layout_content_aside">
       <Link href={routes.home.path}>
         <Image
           src={svgs.dhexFocus}
           width={154}
           height={37}
           alt={"App Logo"}
-          className="app_layout_aside_logo"
+          className="app_layout_content_aside_logo"
         />
       </Link>
 

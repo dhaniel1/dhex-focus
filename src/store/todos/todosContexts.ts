@@ -29,20 +29,11 @@ function filterByProperty<T, K extends keyof T>(
 export const useTodoContext = () => {
   const { state, dispatch } = useContext(TodoContext);
 
-  const todo = filterByProperty<TodoItem, "todoStage">(
-    state,
-    "todoStage",
-    TODOSTAGE.TODO
-  );
   const inProgress = filterByProperty<TodoItem, "todoStage">(
     state,
     "todoStage",
     TODOSTAGE.INPROGRESS
   );
-  const completed = filterByProperty<TodoItem, "todoStage">(
-    state,
-    "todoStage",
-    TODOSTAGE.COMPLETED
-  );
-  return { states: { todo, inProgress, completed }, dispatch };
+
+  return { states: { inProgress, rawState: state }, dispatch };
 };

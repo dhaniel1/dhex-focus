@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import DragList from "../DragAndDrop";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { useTodoContext } from "@/store/todos";
+import TasksInProgress from "./tasksPreview";
 
 const TodoPreview = () => {
   const router = useRouter();
@@ -13,7 +13,6 @@ const TodoPreview = () => {
     states: { inProgress },
   } = useTodoContext();
 
-  //   TODO: change initialTodoState to be gotten from the todo context
   return (
     <div className="w-full h-max">
       <div className="flex justify-between mb-5 items-start">
@@ -37,7 +36,7 @@ const TodoPreview = () => {
           Manage Todos
         </Button>
       </div>
-      <DragList />
+      <TasksInProgress />
     </div>
   );
 };

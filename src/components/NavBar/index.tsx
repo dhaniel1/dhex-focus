@@ -9,7 +9,7 @@ import Languages from "../Language";
 
 const NavActions = () => {
   return (
-    <div className="app_layout_main_navbar_actions">
+    <div className="app_layout_content_main_navbar_actions">
       <Button label="New Beta!" variant="primary" className="text-lg" />
 
       <Popover
@@ -63,8 +63,8 @@ const NavBar = () => {
   }
 
   return (
-    <header className="app_layout_main_navbar">
-      <h2 className="app_layout_main_navbar_title">{displayTitle}</h2>
+    <header className="app_layout_content_main_navbar">
+      <h2 className="app_layout_content_main_navbar_title">{displayTitle}</h2>
       <NavActions />
     </header>
   );
