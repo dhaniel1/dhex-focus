@@ -91,6 +91,16 @@ export const TodoReducer = function (
 
       return stateWithMovedTodo;
 
+    case TODOACTIONTYPE.ReorderTodo:
+      const { stage, reorderedItems } = action.payload;
+
+      return state.map((stateItem) => {
+        if (stateItem.stage === stage) {
+          return { ...stateItem, children: reorderedItems };
+        }
+        return stateItem;
+      });
+
     default:
       return state;
   }

@@ -5,11 +5,20 @@ export enum TODOACTIONTYPE {
   UpdateTodo,
   MoveTodo,
   DeleteTodo,
+  ReorderTodo,
 }
 
 export interface CreateTodo {
   type: TODOACTIONTYPE.CreateTodo;
   payload: TodoItem;
+}
+
+export interface ReorderTodo {
+  type: TODOACTIONTYPE.ReorderTodo;
+  payload: {
+    stage: TodoStage;
+    reorderedItems: TodoItem[];
+  };
 }
 
 export interface MoveTodo {
@@ -37,4 +46,9 @@ export interface DeleteTodo {
   payload: { index: number; todoStage: TodoStage };
 }
 
-export type TodoActions = CreateTodo | UpdateTodo | MoveTodo | DeleteTodo;
+export type TodoActions =
+  | CreateTodo
+  | UpdateTodo
+  | MoveTodo
+  | ReorderTodo
+  | DeleteTodo;

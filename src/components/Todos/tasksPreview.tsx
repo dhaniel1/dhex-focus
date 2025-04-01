@@ -63,6 +63,7 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
               data={data}
               isPreview={true}
               arrayIndex={index}
+              currentStage={TODOSTAGE.INPROGRESS}
             />
           );
         })}

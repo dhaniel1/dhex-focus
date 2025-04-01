@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { RadioGroupItem } from "../ui/radio-group";
 import { useDrag, useDrop } from "react-dnd";
 import { cn } from "@/lib/utils";
@@ -8,57 +8,101 @@ interface ITodoTablet {
   data: TodoItem;
   isPreview?: boolean;
   arrayIndex?: number;
+  currentStage: TodoStage;
   moveItem?: (
+    fromStage: TodoStage,
+    toStage: TodoStage,
     fromIndex: number,
-    toIndex: number,
-    newStage: TodoStage,
-    movedTodo: TodoItem
+    item: TodoItem,
+    toIndex?: number
   ) => void;
 }
+
+interface DragItem {
+  data: TodoItem;
+  arrayIndex: number;
+  currentStage: TodoStage;
+  id: number;
+}
+
 const ItemType = "TODO_ITEM";
+
 const TodoTablet: FC<ITodoTablet> = ({
   data,
   isPreview = false,
   arrayIndex,
+  currentStage,
   moveItem,
 }) => {
-  const ref = React.useRef(null);
-
-  const [, drop] = useDrop({
-    accept: ItemType,
-    hover(item: { data: TodoItem; arrayIndex: number }) {
-      console.log("Hovered item", item);
-
-      if (item.arrayIndex === arrayIndex) return;
-      if (moveItem) moveItem(arrayIndex!, 2, "completed", item.data!);
-      // item.index = index;
-    },
-  });
+  const ref = useRef<HTMLDivElement>(null);
 
   const [{ isDragging }, drag] = useDrag({
     type: ItemType,
-    item: { data, arrayIndex },
+    item: {
+      data,
+      arrayIndex,
+      currentStage,
+      id: data.id,
+    } as DragItem,
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
 
-  drag(drop(ref)); // Make it both draggable and droppable
+  const [{ isOver }, drop] = useDrop({
+    accept: ItemType,
+    hover(item: DragItem) {
+      if (!ref.current) return;
+
+      // Don't replace items with themselves
+      if (
+        item.arrayIndex === arrayIndex &&
+        item.currentStage === currentStage
+      ) {
+        return;
+      }
+
+      // Only perform actions if we have the necessary function and data
+      if (moveItem && arrayIndex !== undefined) {
+        moveItem(
+          item.currentStage,
+          currentStage,
+          item.arrayIndex,
+          item.data,
+          arrayIndex // The actual index where we want to insert
+        );
+
+        // Update the item's index and stage
+        item.arrayIndex = arrayIndex;
+        item.currentStage = currentStage;
+      }
+    },
+
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  });
+
+  drag(drop(ref));
 
   return (
     <div
       ref={!isPreview ? ref : undefined}
       className={cn(
-        "w-full flex gap-6 items-start bg-[#f9fafb] rounded-lg border-[#cbd5e1] drop-shadow-sm px-3 py-5 mx-0 my-1 text-lg ",
-        [isDragging ? "bg-[#e0e0e0]" : "bg-[#fff]"],
-        { "cursor-move": !isPreview }
+        "w-full flex gap-6 items-start rounded-lg border-[#cbd5e1] drop-shadow-sm px-3 py-5 mx-0 my-1 text-lg",
+        {
+          "opacity-50": isDragging,
+          "bg-blue-50": isOver,
+          "bg-white": !isOver && !isDragging,
+          "cursor-move": !isPreview,
+        }
       )}
     >
       {isPreview && (
         <RadioGroupItem id={data?.description} value={data?.description} />
       )}
 
-      <label className={cn("bla bal", { "cursor-move": !isPreview })}>
+      <label className={cn({ "cursor-move": !isPreview })}>
         {data.description}
       </label>
     </div>
