@@ -14,7 +14,7 @@ const TaskBoard = () => {
     toStage: TodoStage,
     fromIndex: number,
     item: TodoItem,
-    toIndex?: number
+    toIndex: number
   ) => {
     // If moving within the same stage, just reorder
     if (fromStage === toStage) {
@@ -55,6 +55,7 @@ const TaskBoard = () => {
     dispatch({
       type: TODOACTIONTYPE.UpdateTodo,
       payload: {
+        toIndex,
         updatedStageChildren,
         newStage: toStage,
         updatedTodoItem,
@@ -76,12 +77,13 @@ const TaskBoard = () => {
         </Button>
       </div>
       <div className="app_todo_container_board ">
-        {todoState.map(({ id, children, stage }) => {
+        {todoState.map(({ id, children, stage }, index) => {
           return (
             <TodoStageColumn
               key={id}
               stage={stage}
               items={children}
+              index={index}
               moveItem={handleMoveItem}
             />
           );

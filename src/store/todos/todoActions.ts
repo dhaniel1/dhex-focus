@@ -38,6 +38,7 @@ export interface UpdateTodo {
     currentStage: TodoStage;
     updatedTodoItem: TodoItem;
     updatedStageChildren: TodoItem[];
+    toIndex: number;
   };
 }
 

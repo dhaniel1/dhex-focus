@@ -26,16 +26,22 @@ export const TodoReducer = function (
         newStage: newTodoState,
         updatedTodoItem,
         currentStage,
+        toIndex,
       } = action.payload;
 
       const stateWithUpdatedTodo = state.map((stateItem) => {
         if (stateItem.stage === currentStage) {
           return { ...stateItem, children: updatedStageChildren };
         }
+
+        // this inserts the new todo item in selected position for the new stage
         if (stateItem.stage === newTodoState) {
+          const temp = [...stateItem.children];
+          temp.splice(toIndex, 0, updatedTodoItem);
+
           return {
             ...stateItem,
-            children: [updatedTodoItem, ...stateItem.children],
+            children: temp,
           };
         }
 

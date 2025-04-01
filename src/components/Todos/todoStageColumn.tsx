@@ -8,16 +8,22 @@ import { capitalize, cn } from "@/lib/utils";
 interface ITodoColumn {
   stage: TodoStage;
   items: TodoItem[];
+  index: number;
   moveItem: (
     fromStage: TodoStage,
     toStage: TodoStage,
     fromIndex: number,
     item: TodoItem,
-    toIndex?: number
+    toIndex: number
   ) => void;
 }
 
-const TodoStageColumn: FC<ITodoColumn> = ({ stage, items, moveItem }) => {
+const TodoStageColumn: FC<ITodoColumn> = ({
+  stage,
+  items,
+  index,
+  moveItem,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [{ isOver }, drop] = useDrop({
@@ -28,7 +34,7 @@ const TodoStageColumn: FC<ITodoColumn> = ({ stage, items, moveItem }) => {
       currentStage: TodoStage;
     }) => {
       if (item.currentStage !== stage) {
-        moveItem(item.currentStage, stage, item.arrayIndex, item.data);
+        moveItem(item.currentStage, stage, item.arrayIndex, item.data, index);
       }
     },
     collect: (monitor) => ({

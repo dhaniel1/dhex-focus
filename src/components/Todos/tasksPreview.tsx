@@ -37,6 +37,7 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
         dispatch({
           type: TODOACTIONTYPE.UpdateTodo,
           payload: {
+            toIndex: 0,
             newStage,
             currentStage,
             updatedTodoItem: selectedTodoItem,

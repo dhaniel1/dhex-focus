@@ -14,7 +14,7 @@ interface ITodoTablet {
     toStage: TodoStage,
     fromIndex: number,
     item: TodoItem,
-    toIndex?: number
+    toIndex: number
   ) => void;
 }
 
