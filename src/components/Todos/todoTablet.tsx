@@ -89,7 +89,7 @@ const TodoTablet: FC<ITodoTablet> = ({
     <div
       ref={!isPreview ? ref : undefined}
       className={cn(
-        "w-full flex gap-6 items-start rounded-lg border-[#cbd5e1] drop-shadow-sm px-3 py-5 mx-0 my-1 text-lg",
+        "w-full flex gap-6 items-start rounded-lg border-[#cbd5e1] drop-shadow-sm px-3 py-5 mx-0 my-0.5 text-lg",
         {
           "opacity-50": isDragging,
           "bg-blue-50": isOver,
