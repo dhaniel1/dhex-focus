@@ -1,46 +1,71 @@
 import React, { FC, useCallback } from "react";
 
 import { RadioGroup } from "../ui/radio-group";
-import { type TodoItem, TODOSTAGE, useTodoContext } from "@/store/todos";
+import {
+  type TodoItem,
+  TODOSTAGE,
+  TodoStateItem,
+  useTodoContext,
+} from "@/store/todos";
 import { TODOACTIONTYPE } from "@/store/todos/todoActions";
-import ITodoTablet from "./todoTablet";
+import TodoTablet from "./todoTablet";
 
-const TasksInProgress: FC = () => {
-  const {
-    states: { inProgress },
-    dispatch,
-  } = useTodoContext();
+type ITasksInProgress = {
+  inProgress: TodoStateItem | undefined;
+};
+
+const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
+  const { dispatch } = useTodoContext();
+  const { children } = inProgress!;
 
   const handleValueChange = useCallback(
     (value: string) => {
-      const selectedTodoItem = inProgress.find(({ description }) => {
+      const selectedTodoItem = children.find(({ description }) => {
         return description === value;
       });
 
-      if (selectedTodoItem) {
-        const updatedTodo: TodoItem = {
-          ...selectedTodoItem,
-          todoStage: TODOSTAGE.COMPLETED,
-        };
+      const updatedCurrrentStageChildren = children.filter(
+        ({ description }) => {
+          return description !== value;
+        }
+      );
 
-        dispatch({ type: TODOACTIONTYPE.UpdateTodo, payload: updatedTodo });
+      if (selectedTodoItem) {
+        const newStage = TODOSTAGE.COMPLETED;
+        const currentStage = selectedTodoItem.todoStage;
+
+        dispatch({
+          type: TODOACTIONTYPE.UpdateTodo,
+          payload: {
+            newStage,
+            currentStage,
+            updatedTodoItem: selectedTodoItem,
+            updatedStageChildren: updatedCurrrentStageChildren as TodoItem[],
+          },
+        });
       }
     },
-    [dispatch, inProgress]
+    [children, dispatch]
   );
 
   return (
-    <div className="m-auto h-[80vh] w-full flex flex-col gap-2 overflow-scroll">
+    <div className="m-auto p-0.5 h-[80vh] w-full flex flex-col gap-2 overflow-scroll">
       <RadioGroup
-        className="w-[99.6%] mx-auto"
         defaultValue={"CHANGE ME"} // TODO: Fix defualt value
         onValueChange={(value) => {
-          setTimeout(() => handleValueChange(value), 500); // Simulates an api process lol
+          setTimeout(() => handleValueChange(value), 10); // Simulates an api process lol
         }}
       >
-        {inProgress.map(({ description }) => (
-          <ITodoTablet key={description} value={description} isPreview={true} />
-        ))}
+        {inProgress?.children.map((data, index) => {
+          return (
+            <TodoTablet
+              key={data.description}
+              data={data}
+              isPreview={true}
+              arrayIndex={index}
+            />
+          );
+        })}
       </RadioGroup>
     </div>
   );

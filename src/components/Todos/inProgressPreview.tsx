@@ -4,14 +4,16 @@ import React from "react";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
-import { useTodoContext } from "@/store/todos";
+import { TODOSTAGE, useTodoContext } from "@/store/todos";
 import TasksInProgress from "./tasksPreview";
 
 const TodoPreview = () => {
   const router = useRouter();
-  const {
-    states: { inProgress },
-  } = useTodoContext();
+  const { state } = useTodoContext();
+
+  const inProgress = state.find(
+    (stateItem) => stateItem.stage === TODOSTAGE.INPROGRESS
+  );
 
   return (
     <div className="w-full h-max">
@@ -20,7 +22,7 @@ const TodoPreview = () => {
           <h2 className="text-left font-bold  text-2xl">
             Tasks in progress
             <span className="font-medium text-xl pl-2">
-              {inProgress.length}
+              {inProgress?.children.length}
             </span>
           </h2>
           <p className="text-primary text-sm pt-2">
@@ -33,10 +35,10 @@ const TodoPreview = () => {
           variant="primary"
           onClick={() => router.push(routes.tasks.path)}
         >
-          Manage Todos
+          View all Todos
         </Button>
       </div>
-      <TasksInProgress />
+      <TasksInProgress inProgress={inProgress} />
     </div>
   );
 };

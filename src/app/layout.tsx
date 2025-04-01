@@ -8,6 +8,8 @@ import { NavBar, SideNav } from "@/components";
 import { SessionProvider } from "@/store/timer/pomodoroProviders";
 import { PomodoroProvider } from "@/store";
 import { TodoProvider } from "@/store/todos/todoProviders";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,19 +36,21 @@ export default function RootLayout({
       <PomodoroProvider>
         <SessionProvider>
           <TodoProvider>
-            <body
-              className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-              <main className="app_layout">
-                <div className="app_layout_content">
-                  <SideNav />
-                  <div className="app_layout_content_main">
-                    <NavBar />
-                    {children}
+            <DndProvider backend={HTML5Backend}>
+              <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+              >
+                <main className="app_layout">
+                  <div className="app_layout_content">
+                    <SideNav />
+                    <div className="app_layout_content_main">
+                      <NavBar />
+                      {children}
+                    </div>
                   </div>
-                </div>
-              </main>
-            </body>
+                </main>
+              </body>
+            </DndProvider>
           </TodoProvider>
         </SessionProvider>
       </PomodoroProvider>

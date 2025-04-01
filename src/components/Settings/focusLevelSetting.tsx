@@ -20,7 +20,6 @@ const FocusLevelSetting = () => {
         <RadioGroup
           defaultValue={focusLevel}
           onValueChange={(value) => {
-            console.log(value);
             dispatch({
               type: POMODOROACTIONTYPE.UpdateFocusLevel,
               payload: value,

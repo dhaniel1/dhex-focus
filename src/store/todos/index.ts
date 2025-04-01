@@ -4,6 +4,7 @@ export {
   type TodoStage,
   type TodoItem,
   type TodoState,
+  type TodoStateItem,
 } from "./state";
 
 export {

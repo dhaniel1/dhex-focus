@@ -1,9 +1,10 @@
-import React, { FC, useMemo } from "react";
+import React, { FC } from "react";
 import { TodoItem, TodoStage, useTodoContext } from "@/store/todos";
 import TodoTablet from "./todoTablet";
 import { capitalize } from "@/lib/utils";
 import Button from "../Button";
 import { PlusIcon } from "../shared/svgs";
+import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 
 interface ISubBoard {
   listData: TodoItem[];
@@ -11,6 +12,25 @@ interface ISubBoard {
 }
 
 const SubBoard: FC<ISubBoard> = ({ listData, stage }) => {
+  const { dispatch } = useTodoContext();
+
+  const moveItem = (
+    fromIndex: number,
+    toIndex: number,
+    newStage: TodoStage,
+    movedTodo: TodoItem
+  ) => {
+    dispatch({
+      type: TODOACTIONTYPE.MoveTodo,
+      payload: {
+        movedTodo,
+        newStage,
+        newTodoIndex: toIndex,
+        oldTodoIndex: fromIndex,
+      },
+    });
+  };
+
   return (
     <div className="app_todo_container_board_item ">
       <div className="pb-3 absolute bg-inherit z-10 top-0 left-0">
@@ -20,8 +40,13 @@ const SubBoard: FC<ISubBoard> = ({ listData, stage }) => {
         </p>
       </div>
       <div className="app_todo_container_board_item_list">
-        {listData.map(({ description }) => (
-          <TodoTablet key={description} value={description} />
+        {listData.map((data, arrayIndex) => (
+          <TodoTablet
+            key={data.description}
+            arrayIndex={arrayIndex}
+            data={data}
+            moveItem={moveItem}
+          />
         ))}
       </div>
     </div>
@@ -29,42 +54,8 @@ const SubBoard: FC<ISubBoard> = ({ listData, stage }) => {
 };
 
 const TaskBoard = () => {
-  const {
-    states: { rawState },
-  } = useTodoContext();
+  const { state } = useTodoContext();
 
-  type ITaskboard = { id: number; stage: TodoStage; children: TodoItem[] }[];
-
-  const SortedTodos = useMemo(
-    () =>
-      rawState.reduce(
-        (acc, todoitem, index) => {
-          const existingStage = acc.find(
-            (value) => value.stage === todoitem.todoStage
-          );
-
-          if (existingStage) {
-            existingStage.children.push(todoitem);
-          } else {
-            acc.push({
-              id: index,
-              stage: todoitem.todoStage,
-              children: [todoitem],
-            });
-          }
-
-          return acc;
-        },
-        [
-          { id: 0, stage: "to do", children: [] },
-          { id: 0, stage: "in progress", children: [] },
-          { id: 0, stage: "completed", children: [] },
-        ] as ITaskboard
-      ),
-    [rawState]
-  );
-
-  // console.log("SortedTodos", SortedTodos);
   return (
     <div className="app_todo_container">
       <div className="app_todo_container_header">
@@ -78,9 +69,9 @@ const TaskBoard = () => {
         </Button>
       </div>
       <div className="app_todo_container_board ">
-        {SortedTodos.map(({ id, children, stage }) => (
-          <SubBoard key={id} stage={stage} listData={children} />
-        ))}
+        {state.map(({ id, children, stage }) => {
+          return <SubBoard key={id} stage={stage} listData={children} />;
+        })}
       </div>
     </div>
   );

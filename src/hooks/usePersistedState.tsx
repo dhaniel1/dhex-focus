@@ -14,8 +14,6 @@ function temp(key: string, initialValue: unknown) {
 }
 
 function usePersistedState<S>(key: string, initialValue: S) {
-  // console.log(window);
-
   const [state, setState] = useState<S>(temp(key, initialValue));
 
   useEffect(() => {
