@@ -71,7 +71,7 @@ const TaskBoard = () => {
       <div className="app_todo_container_header">
         <Dialog
           footer={false}
-          dialogTitle="Add Todo"
+          dialogTitle="Add Task"
           dialogContent={<AddTask />}
         >
           <Button
