@@ -5,6 +5,8 @@ import Button from "../Button";
 import { PlusIcon } from "../shared/svgs";
 import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 import TodoStageColumn from "./todoStageColumn";
+import Dialog from "../Dialog";
+import { AddTask } from "../forms";
 
 const TaskBoard = () => {
   const { state: todoState, dispatch } = useTodoContext();
@@ -67,14 +69,20 @@ const TaskBoard = () => {
   return (
     <div className="app_todo_container">
       <div className="app_todo_container_header">
-        <Button
-          iconDimension="1.5rem"
-          icon={PlusIcon}
-          variant="primary"
-          className="p-6 font-bold text-lg"
+        <Dialog
+          footer={false}
+          dialogTitle="Add Todo"
+          dialogContent={<AddTask />}
         >
-          Add Task
-        </Button>
+          <Button
+            iconDimension="1.5rem"
+            icon={PlusIcon}
+            variant="primary"
+            className="p-6 font-bold text-lg"
+          >
+            Add Task
+          </Button>
+        </Dialog>
       </div>
       <div className="app_todo_container_board ">
         {todoState.map(({ id, children, stage }, index) => {
