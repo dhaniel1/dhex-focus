@@ -2,11 +2,15 @@
 
 import { TaskBoard } from "@/components/Todos";
 import React from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function TodoPage() {
   return (
     <div className="app_todo">
-      <TaskBoard />
+      <DndProvider backend={HTML5Backend}>
+        <TaskBoard />
+      </DndProvider>
     </div>
   );
 }

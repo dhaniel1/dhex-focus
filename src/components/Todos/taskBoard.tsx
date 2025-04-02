@@ -73,7 +73,7 @@ const TaskBoard = () => {
           variant="primary"
           className="p-6 font-bold text-lg"
         >
-          Add To do
+          Add Task
         </Button>
       </div>
       <div className="app_todo_container_board ">
