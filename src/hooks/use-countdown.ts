@@ -53,7 +53,8 @@ const useCountdown = (totalTimeInMinutes: number) => {
   }
 
   function formatTimeVisual(rawVal: number) {
-    const minutes = padZero(Math.floor((rawVal % 3600) / 60));
+    const minutes =
+      rawVal === 3600 ? 60 : padZero(Math.floor((rawVal % 3600) / 60));
     const seconds = padZero(rawVal % 60);
 
     return `${minutes} : ${seconds}`;
