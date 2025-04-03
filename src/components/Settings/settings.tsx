@@ -1,6 +1,6 @@
 "use client";
 
-import { settings, SETTINGSTYPE } from "@/lib/utils/static";
+import { settings, SETTINGSTYPE, TimeType } from "@/lib/utils/static";
 import React, { FC, useState } from "react";
 import Button from "../Button";
 import { ArrowRightIcon } from "../shared/svgs";
@@ -12,11 +12,15 @@ import NotificationSetting from "./notificationSetting";
 import { Separator } from "../ui/separator";
 import { useSessionContext } from "@/store/timer/pomodoroContexts";
 
-const extra = ["Skip to break", "Skip to long break"];
+const extra = [
+  { label: "Skip to break", action: "rest" },
+  { label: "Skip to long break", action: "longRest" },
+  ,
+];
 
 const Settings: FC = () => {
   const [activeSetting, setActiveSetting] = useState<string | null>(null);
-  const { isActive } = useSessionContext();
+  const { isActive, setActiveTab } = useSessionContext();
   function makeActive(value: string | null) {
     setActiveSetting(value);
     return;
@@ -47,16 +51,16 @@ const Settings: FC = () => {
         })}
         {!isActive && <Separator className="my-4" />}
         {!isActive &&
-          extra.map((title) => {
+          extra?.map((item) => {
             return (
               <Button
-                key={title}
+                key={item?.action}
                 variant="ghost"
                 size="lg"
                 className="w-full justify-start text-left p-7 text-lg "
-                onClick={() => alert(title)}
+                onClick={() => setActiveTab(() => item?.action as TimeType)}
               >
-                {title}
+                {item?.label}
               </Button>
             );
           })}
