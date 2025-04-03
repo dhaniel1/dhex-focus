@@ -6,7 +6,8 @@ import { PlusIcon } from "../shared/svgs";
 import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 import TodoStageColumn from "./todoStageColumn";
 import Dialog from "../Dialog";
-import { AddTask } from "../forms";
+import { TaskForm } from "../forms";
+import { TASKFORMTYPE } from "@/lib/utils/static";
 
 const TaskBoard = () => {
   const { state: todoState, dispatch } = useTodoContext();
@@ -41,7 +42,7 @@ const TaskBoard = () => {
       return;
     }
 
-    // Find the current stage's todos
+    /*     // Find the current stage's todos
     const currentStageTodos =
       todoState.find((stage) => stage.stage === fromStage)?.children || [];
 
@@ -49,19 +50,18 @@ const TaskBoard = () => {
     const updatedStageChildren = currentStageTodos.filter(
       (todo) => todo.id !== item.id
     );
-
+ */
     // Update the todoStage property of the moved item
-    const updatedTodoItem = { ...item, todoStage: toStage };
+    // const updatedTodoItem = { ...item, todoStage: toStage };
 
     // Dispatch the update action
     dispatch({
-      type: TODOACTIONTYPE.UpdateTodo,
+      type: TODOACTIONTYPE.MoveTodo,
       payload: {
-        toIndex,
-        updatedStageChildren,
         newStage: toStage,
-        updatedTodoItem,
-        currentStage: fromStage,
+        newTodoIndex: toIndex,
+        oldTodoIndex: fromIndex,
+        movedTodo: item,
       },
     });
   };
@@ -70,9 +70,9 @@ const TaskBoard = () => {
     <div className="app_todo_container">
       <div className="app_todo_container_header">
         <Dialog
-          footer={false}
+          enableFooter={false}
           dialogTitle="Add Task"
-          dialogContent={<AddTask />}
+          dialogContent={<TaskForm type={TASKFORMTYPE.CREATE} />}
         >
           <Button
             iconDimension="1.5rem"

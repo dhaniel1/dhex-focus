@@ -21,28 +21,14 @@ export const TodoReducer = function (
 
     /* Updates a new todo Item */
     case TODOACTIONTYPE.UpdateTodo:
-      const {
-        updatedStageChildren,
-        newStage: newTodoState,
-        updatedTodoItem,
-        currentStage,
-        toIndex,
-      } = action.payload;
+      const { updatedTodoItem, currentIndex } = action.payload;
 
       const stateWithUpdatedTodo = state.map((stateItem) => {
-        if (stateItem.stage === currentStage) {
+        if (stateItem.stage === updatedTodoItem.todoStage) {
+          const updatedStageChildren = [...stateItem.children];
+          updatedStageChildren[currentIndex] = updatedTodoItem;
+
           return { ...stateItem, children: updatedStageChildren };
-        }
-
-        // this inserts the new todo item in selected position for the new stage
-        if (stateItem.stage === newTodoState) {
-          const temp = [...stateItem.children];
-          temp.splice(toIndex, 0, updatedTodoItem);
-
-          return {
-            ...stateItem,
-            children: temp,
-          };
         }
 
         return stateItem;
@@ -55,9 +41,11 @@ export const TodoReducer = function (
       const { todoStage, index: todoIndex } = action.payload;
       const stateWithDeletedTodo = state.map((stateItem) => {
         if (stateItem.stage === todoStage) {
+          const updatedChildren = [...stateItem.children];
+          updatedChildren.splice(todoIndex, 1);
           return {
             ...stateItem,
-            children: [...stateItem.children].splice(todoIndex, 1),
+            children: updatedChildren,
           };
         }
         return stateItem;
@@ -74,6 +62,7 @@ export const TodoReducer = function (
         if (stateItem.stage === movedTodo.todoStage) {
           const updatedChildren = [...stateItem.children];
           updatedChildren.splice(oldTodoIndex, 1);
+
           return {
             ...stateItem,
             children: updatedChildren,

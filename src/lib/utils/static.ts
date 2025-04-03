@@ -9,6 +9,13 @@ import {
 import { routes } from "../routes";
 import { Itab } from "@/components/SideNav";
 
+export enum TASKFORMTYPE {
+  CREATE = "create",
+  EDIT = "edit",
+}
+
+export type TaskFormType = `${TASKFORMTYPE}`;
+
 export enum SETTINGSTYPE {
   FocusLevel = "Focus Level",
   Alarm = "Alarm",

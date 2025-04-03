@@ -34,11 +34,8 @@ export interface MoveTodo {
 export interface UpdateTodo {
   type: TODOACTIONTYPE.UpdateTodo;
   payload: {
-    newStage: TodoStage;
-    currentStage: TodoStage;
     updatedTodoItem: TodoItem;
-    updatedStageChildren: TodoItem[];
-    toIndex: number;
+    currentIndex: number;
   };
 }
 

@@ -16,6 +16,8 @@ import FormSelect from "../Select";
 import { TodoItem, TodoStage, TODOSTAGE, useTodoContext } from "@/store/todos";
 import { capitalize } from "@/lib/utils";
 import { TODOACTIONTYPE } from "@/store/todos/todoActions";
+import { FC } from "react";
+import { TASKFORMTYPE, TaskFormType } from "@/lib/utils/static";
 
 const selectObj = [
   { value: TODOSTAGE.TODO, label: capitalize(TODOSTAGE.TODO) },
@@ -23,25 +25,49 @@ const selectObj = [
   { value: TODOSTAGE.COMPLETED, label: capitalize(TODOSTAGE.COMPLETED) },
 ];
 
-export function AddTask() {
+const TaskForm: FC<{
+  type: TaskFormType;
+  editData?: TodoItem;
+  dataIndex?: number;
+}> = ({ type, editData, dataIndex }) => {
   const form = useForm<z.infer<typeof createTaskSchema>>({
     resolver: zodResolver(createTaskSchema),
-    defaultValues: {
-      description: "",
-      stage: TODOSTAGE.TODO,
-    },
+    defaultValues:
+      type === TASKFORMTYPE.CREATE
+        ? {
+            description: "",
+            stage: TODOSTAGE.TODO,
+          }
+        : { description: editData?.description, stage: editData?.todoStage },
   });
 
   const { dispatch } = useTodoContext();
 
   function onSubmit(data: z.infer<typeof createTaskSchema>) {
-    const newTodo: TodoItem = {
-      id: Date.now(),
-      todoStage: data.stage as TodoStage,
-      description: data.description,
-    };
-    dispatch({ type: TODOACTIONTYPE.CreateTodo, payload: newTodo });
-    console.log("Data", data);
+    if (type === TASKFORMTYPE.CREATE) {
+      const newTodo: TodoItem = {
+        id: Date.now(),
+        todoStage: data.stage as TodoStage,
+        description: data.description,
+      };
+      dispatch({ type: TODOACTIONTYPE.CreateTodo, payload: newTodo });
+      return;
+    }
+
+    if (type === TASKFORMTYPE.EDIT && dataIndex) {
+      dispatch({
+        type: TODOACTIONTYPE.UpdateTodo,
+        payload: {
+          currentIndex: dataIndex,
+          updatedTodoItem: {
+            description: data.description,
+            todoStage: data.stage as TodoStage,
+            id: editData?.id as number,
+          },
+        },
+      });
+      console.log("Data", data);
+    }
   }
 
   return (
@@ -86,7 +112,7 @@ export function AddTask() {
             </DialogClose>
             <DialogClose asChild>
               <Button
-                label="Add Task"
+                label={type === TASKFORMTYPE.CREATE ? "Add Task" : "Edit Task"}
                 size="sm"
                 //   className=" rounded-xl w-[243px] h-14"
                 type="submit"
@@ -97,4 +123,6 @@ export function AddTask() {
       </Form>
     </div>
   );
-}
+};
+
+export default TaskForm;

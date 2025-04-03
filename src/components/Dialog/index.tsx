@@ -17,7 +17,9 @@ interface IDialog {
   children: React.ReactNode;
   dialogTitle: React.ReactNode;
   dialogDescription?: React.ReactNode;
-  footer: boolean;
+  confirmLabel?: string;
+  confirmAction?: () => void;
+  enableFooter?: boolean;
 }
 
 const Dialog: FC<IDialog> = ({
@@ -25,7 +27,9 @@ const Dialog: FC<IDialog> = ({
   dialogTitle,
   dialogDescription,
   children,
-  footer = true,
+  confirmLabel,
+  confirmAction,
+  enableFooter = true,
 }) => {
   return (
     <ShadCNDialog>
@@ -36,12 +40,23 @@ const Dialog: FC<IDialog> = ({
           <DialogDescription>{dialogDescription}</DialogDescription>
         </DialogHeader>
         {dialogContent}
-        {footer && (
-          <DialogFooter className="sm:justify-start">
+        {enableFooter && (
+          <DialogFooter className="sm:justify-start pt-2 mt-4 flex items-center gap-6">
             <DialogClose asChild>
-              <Button type="button" variant="secondary">
-                Close
-              </Button>
+              <Button
+                label="Cancel"
+                size="sm"
+                variant="secondary"
+                type="button"
+              />
+            </DialogClose>
+            <DialogClose asChild>
+              <Button
+                label={confirmLabel || "Confirm"}
+                size="sm"
+                onClick={confirmAction}
+                type="button"
+              />
             </DialogClose>
           </DialogFooter>
         )}
