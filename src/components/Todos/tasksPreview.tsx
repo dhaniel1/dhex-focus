@@ -1,12 +1,7 @@
 import React, { FC, useCallback } from "react";
 
 import { RadioGroup } from "../ui/radio-group";
-import {
-  type TodoItem,
-  TODOSTAGE,
-  TodoStateItem,
-  useTodoContext,
-} from "@/store/todos";
+import { TODOSTAGE, TodoStateItem, useTodoContext } from "@/store/todos";
 import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 import TodoTablet from "./todoTablet";
 
@@ -16,37 +11,32 @@ type ITasksInProgress = {
 
 const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
   const { dispatch } = useTodoContext();
-  const { children } = inProgress!;
+  // const { children } = inProgress;
 
   const handleValueChange = useCallback(
     (value: string) => {
-      const selectedTodoItem = children.find(({ description }) => {
+      const oldTodoIndex = inProgress?.children.findIndex(({ description }) => {
         return description === value;
       });
 
-      const updatedCurrrentStageChildren = children.filter(
-        ({ description }) => {
-          return description !== value;
-        }
-      );
+      console.log("oldTodoIndex", oldTodoIndex);
 
-      if (selectedTodoItem) {
-        const newStage = TODOSTAGE.COMPLETED;
-        const currentStage = selectedTodoItem.todoStage;
+      const movedTodo = inProgress?.children[oldTodoIndex!];
+      const newStage = TODOSTAGE.COMPLETED;
 
+      if (oldTodoIndex !== undefined && oldTodoIndex !== null && movedTodo) {
         dispatch({
-          type: TODOACTIONTYPE.UpdateTodo,
+          type: TODOACTIONTYPE.MoveTodo,
           payload: {
-            toIndex: 0,
             newStage,
-            currentStage,
-            updatedTodoItem: selectedTodoItem,
-            updatedStageChildren: updatedCurrrentStageChildren as TodoItem[],
+            newTodoIndex: 0,
+            oldTodoIndex,
+            movedTodo,
           },
         });
       }
     },
-    [children, dispatch]
+    [dispatch, inProgress?.children]
   );
 
   return (
