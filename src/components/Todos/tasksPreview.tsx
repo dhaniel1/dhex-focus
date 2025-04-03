@@ -50,7 +50,7 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
   );
 
   return (
-    <div className="m-auto p-0.5 h-[80vh] w-full flex flex-col gap-2 overflow-scroll">
+    <div className="m-auto p-2 h-[80vh] w-full flex flex-col gap-2 overflow-scroll bg-gray-50 rounded-lg">
       <RadioGroup
         defaultValue={"CHANGE ME"} // TODO: Fix defualt value
         onValueChange={(value) => {

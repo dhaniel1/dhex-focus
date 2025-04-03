@@ -1,9 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  type Dispatch,
+  type SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { useActiveFocusLevel } from ".";
+import { pomodoroStage, TimeType } from "@/lib/utils/static";
+import { usePomodoroContext } from "@/store";
 
-const useCountdown = (totalTimeInMinutes: number) => {
-  const totalTime = totalTimeInMinutes * 60; // in seconds
+interface IuseCountdownProp {
+  setActiveTab: Dispatch<SetStateAction<TimeType>>;
+  activeTab: TimeType;
+}
+
+const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
+  const { activeFocusLevelValues } = useActiveFocusLevel();
+  const {
+    state: {
+      autoStart: { breaks },
+    },
+  } = usePomodoroContext();
+  const totalTime = activeFocusLevelValues![activeTab] * 60; // in seconds
+
   const [timeRemaining, setTimeRemaining] = useState(totalTime);
   const [isActive, setIsActive] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -20,6 +41,16 @@ const useCountdown = (totalTimeInMinutes: number) => {
       intervalRef.current = setInterval(() => {
         setTimeRemaining((prev) => {
           if (prev <= 1) {
+            if (breaks) {
+              const activeStageIndex = pomodoroStage.findIndex(
+                (value) => value === activeTab
+              );
+
+              if (activeStageIndex + 1 < pomodoroStage.length) {
+                setActiveTab(pomodoroStage[activeStageIndex + 1]);
+                return totalTime;
+              }
+            }
             clearInterval(intervalRef.current!);
             setIsActive(false);
             return 0;
@@ -34,7 +65,7 @@ const useCountdown = (totalTimeInMinutes: number) => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isActive, timeRemaining, totalTimeInMinutes]);
+  }, [activeTab, breaks, isActive, setActiveTab, timeRemaining, totalTime]);
 
   const start = () => {
     setIsActive(true);

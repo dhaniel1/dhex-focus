@@ -76,6 +76,8 @@ export const tabList: Array<{ value: TimeType; label?: string }> = [
   },
 ];
 
+export const pomodoroStage = tabList.map(({ value }) => value);
+
 export const ErrorMessages = {
   required: (value: string) => `${value} is required`,
   selectOne: (value: string) => `You have to select at least one ${value}`,

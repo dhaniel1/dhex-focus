@@ -56,6 +56,7 @@ const Tabs: FC<IProps> = ({ tabs }) => {
               onClick={() => setActiveTab(value)}
               className={cn("text-[#069668]", {
                 "text-[#2463EB]": value === "timer",
+                "border-b-1": value === activeTab,
               })}
             >
               <>

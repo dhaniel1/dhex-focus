@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, ReactNode, useEffect, useReducer, useState } from "react";
-import { useActiveFocusLevel, useCountdown, usePersistedState } from "@/hooks";
+import { useCountdown, usePersistedState } from "@/hooks";
 import {
   PomodoroContext,
   SessionContext,
@@ -35,11 +35,11 @@ export const PomodoroProvider: FC<Iprop> = ({ children }) => {
 
 export const SessionProvider: FC<Iprop> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<TimeType>("timer");
-  const { activeFocusLevelValues } = useActiveFocusLevel();
 
-  const { formattedTime, start, stop, isActive } = useCountdown(
-    activeFocusLevelValues![activeTab]
-  );
+  const { formattedTime, start, stop, isActive } = useCountdown({
+    setActiveTab,
+    activeTab,
+  });
 
   const [sessionState /* setSessionState */] = useState({
     timer: 0,
