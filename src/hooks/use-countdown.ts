@@ -7,8 +7,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { useActiveFocusLevel } from ".";
-import { pomodoroStage, TimeType } from "@/lib/utils/static";
+import { useActiveFocusLevel, usePersistedState } from ".";
+import { pomodoroStage, TimeType, TimeValues } from "@/lib/utils/static";
 import { usePomodoroContext } from "@/store";
 
 interface IuseCountdownProp {
@@ -18,22 +18,50 @@ interface IuseCountdownProp {
 
 const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
   const { activeFocusLevelValues } = useActiveFocusLevel();
+  const totalTime = activeFocusLevelValues![activeTab] * 60; // in seconds
+  const [timeRemaining, setTimeRemaining] = useState(totalTime);
+  const [isActive, setIsActive] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const [persistedState, setPersistedState] = usePersistedState<TimeValues>(
+    "session-count",
+    {
+      timer: 0,
+      rest: 0,
+      longRest: 0,
+    }
+  );
   const {
     state: {
       autoStart: { breaks },
     },
   } = usePomodoroContext();
-  const totalTime = activeFocusLevelValues![activeTab] * 60; // in seconds
 
-  const [timeRemaining, setTimeRemaining] = useState(totalTime);
-  const [isActive, setIsActive] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const EIGHTY_PERCENT = 0.3;
+  const eightyPercentThreshold = Math.floor(totalTime * EIGHTY_PERCENT);
 
   useEffect(
     function () {
       setTimeRemaining(totalTime);
     },
     [totalTime]
+  );
+
+  useEffect(
+    function () {
+      if (eightyPercentThreshold === timeRemaining) {
+        setPersistedState((prevVal) => {
+          return { ...prevVal, [activeTab]: prevVal[activeTab] + 1 };
+        });
+      }
+    },
+    [
+      activeTab,
+      eightyPercentThreshold,
+      setPersistedState,
+      timeRemaining,
+      totalTime,
+    ]
   );
 
   useEffect(() => {
@@ -97,6 +125,7 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
 
   return {
     formattedTime,
+    sessionState: persistedState,
     isActive,
     start,
     stop,

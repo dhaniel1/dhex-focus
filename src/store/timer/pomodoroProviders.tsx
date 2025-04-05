@@ -36,15 +36,9 @@ export const PomodoroProvider: FC<Iprop> = ({ children }) => {
 export const SessionProvider: FC<Iprop> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<TimeType>("timer");
 
-  const { formattedTime, start, stop, isActive } = useCountdown({
+  const { formattedTime, sessionState, start, stop, isActive } = useCountdown({
     setActiveTab,
     activeTab,
-  });
-
-  const [sessionState /* setSessionState */] = useState({
-    timer: 0,
-    rest: 0,
-    longRest: 0,
   });
 
   return (

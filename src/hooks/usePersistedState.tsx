@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-function temp(key: string, initialValue: unknown) {
+function getPersistedState(key: string, initialValue: unknown) {
   try {
     const savedValue =
       typeof localStorage === undefined ? "" : localStorage.getItem(key);
@@ -14,7 +14,7 @@ function temp(key: string, initialValue: unknown) {
 }
 
 function usePersistedState<S>(key: string, initialValue: S) {
-  const [state, setState] = useState<S>(temp(key, initialValue));
+  const [state, setState] = useState<S>(getPersistedState(key, initialValue));
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(state));
