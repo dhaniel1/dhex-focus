@@ -48,7 +48,7 @@ export const sideNavTabs: Itab[] = [
 ];
 
 export const focusLevels: FocusLevel[] = [
-  { "baby step": { timer: 1, rest: 5, longRest: 10 } },
+  { "baby step": { timer: 10, rest: 5, longRest: 10 } },
   { popular: { timer: 20, rest: 5, longRest: 15 } },
   { medium: { timer: 40, rest: 8, longRest: 20 } },
   { extended: { timer: 60, rest: 10, longRest: 25 } },
