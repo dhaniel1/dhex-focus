@@ -34,8 +34,8 @@ const useCountdown = ({
     },
   } = usePomodoroContext();
 
-  const EIGHTY_PERCENT = 0.95;
-  const eightyPercentThreshold = Math.floor(totalTime * EIGHTY_PERCENT);
+  const TIMER_PERCENT = 0.35;
+  const eightyPercentThreshold = Math.floor(totalTime * TIMER_PERCENT);
 
   useEffect(
     function () {
