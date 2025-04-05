@@ -6,8 +6,20 @@ import { SettingsIcon, RestartIcon, GlobeIcon } from "../shared/svgs";
 import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
 import Languages from "../Language";
+import Dialog from "../Dialog";
+import { usePersistedState } from "@/hooks";
+import { sessionCountInitialState, TimeValues } from "@/lib/utils/static";
 
 const NavActions = () => {
+  const [, setPersistedState] = usePersistedState<TimeValues>(
+    "session-count",
+    sessionCountInitialState
+  );
+
+  function confirmRestart() {
+    setPersistedState(sessionCountInitialState);
+  }
+
   return (
     <div className="app_layout_content_main_navbar_actions">
       <Button label="New Beta!" variant="primary" className="text-lg" />
@@ -26,13 +38,20 @@ const NavActions = () => {
         <Settings />
       </Popover>
 
-      <Button
-        label="Restart Session"
-        variant="ghost"
-        className="text-lg gap-1!"
-        icon={RestartIcon}
-        iconDimension="2rem"
-      />
+      <Dialog
+        dialogTitle="Restart Session"
+        dialogDescription={`Are you sure you want to restart your session?`}
+        dialogContent={<></>}
+        confirmAction={confirmRestart}
+      >
+        <Button
+          label="Restart Session"
+          variant="ghost"
+          className="text-lg gap-1!"
+          icon={RestartIcon}
+          iconDimension="2rem"
+        />
+      </Dialog>
 
       <Popover
         triggerComponent={

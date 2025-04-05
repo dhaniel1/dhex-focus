@@ -3,7 +3,7 @@
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
 import { type PomodoroState, initialPomodoroState } from "./state";
 import { PomodoroActions } from "./pomodoroActions";
-import { TimeType } from "@/lib/utils/static";
+import { sessionCountInitialState, TimeType } from "@/lib/utils/static";
 
 interface IPomodoroContext {
   state: PomodoroState;
@@ -44,11 +44,7 @@ export const SessionContext = createContext<ISessionContext>({
   isActive: false,
   activeTab: "rest",
   formattedTime: "",
-  sessionState: {
-    timer: 0,
-    rest: 0,
-    longRest: 0,
-  },
+  sessionState: sessionCountInitialState,
   stop: () => undefined,
   start: () => undefined,
   setActiveTab: () => undefined,

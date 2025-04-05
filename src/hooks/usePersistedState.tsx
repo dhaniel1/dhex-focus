@@ -8,7 +8,7 @@ function getPersistedState(key: string, initialValue: unknown) {
       typeof localStorage === undefined ? "" : localStorage.getItem(key);
     return savedValue ? JSON.parse(savedValue) : initialValue;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return initialValue;
   }
 }

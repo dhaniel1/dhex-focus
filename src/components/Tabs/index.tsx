@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import {
   Tabs as ShadCNTabs,
   TabsContent,
@@ -37,6 +37,8 @@ const Tabs: FC<IProps> = ({ tabs }) => {
     isActive,
     stop,
   } = useSessionContext();
+
+  useEffect(function () {}, [sessionState]);
 
   console.log("I double render - fix me");
   if (!mounted) return null;

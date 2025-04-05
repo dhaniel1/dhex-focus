@@ -48,7 +48,7 @@ export const sideNavTabs: Itab[] = [
 ];
 
 export const focusLevels: FocusLevel[] = [
-  { "baby step": { timer: 10, rest: 5, longRest: 10 } },
+  { "baby step": { timer: 1, rest: 5, longRest: 10 } },
   { popular: { timer: 20, rest: 5, longRest: 15 } },
   { medium: { timer: 40, rest: 8, longRest: 20 } },
   { extended: { timer: 60, rest: 10, longRest: 25 } },
@@ -93,4 +93,10 @@ export const ErrorMessages = {
     `Your ${label} must be ${num} characters.`,
   tooLong: (label: string, length: number) =>
     `Your ${label} must not be more than ${length} characters`,
+};
+
+export const sessionCountInitialState = {
+  timer: 0,
+  rest: 0,
+  longRest: 0,
 };

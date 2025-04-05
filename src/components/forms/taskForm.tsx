@@ -66,7 +66,6 @@ const TaskForm: FC<{
           },
         },
       });
-      console.log("Data", data);
     }
   }
 

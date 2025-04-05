@@ -10,7 +10,11 @@ import {
   type PomodoroState,
 } from ".";
 
-import { TimeType } from "@/lib/utils/static";
+import {
+  sessionCountInitialState,
+  TimeType,
+  TimeValues,
+} from "@/lib/utils/static";
 
 interface Iprop {
   children: ReactNode;
@@ -35,9 +39,14 @@ export const PomodoroProvider: FC<Iprop> = ({ children }) => {
 
 export const SessionProvider: FC<Iprop> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<TimeType>("timer");
+  const [persistedState, setPersistedState] = usePersistedState<TimeValues>(
+    "session-count",
+    sessionCountInitialState
+  );
 
-  const { formattedTime, sessionState, start, stop, isActive } = useCountdown({
+  const { formattedTime, start, stop, isActive } = useCountdown({
     setActiveTab,
+    setPersistedState,
     activeTab,
   });
 
@@ -49,7 +58,7 @@ export const SessionProvider: FC<Iprop> = ({ children }) => {
         isActive,
         activeTab,
         setActiveTab,
-        sessionState,
+        sessionState: persistedState,
         music: "Lofi",
         formattedTime,
       }}

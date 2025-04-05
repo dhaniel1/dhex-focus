@@ -35,8 +35,6 @@ const TextArea = ({
   subText,
   ...rest
 }: InputProps<object>) => {
-  console.log(required);
-
   return (
     <FormItem
       className={cn(

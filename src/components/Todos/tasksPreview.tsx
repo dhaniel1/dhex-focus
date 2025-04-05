@@ -19,8 +19,6 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
         return description === value;
       });
 
-      console.log("oldTodoIndex", oldTodoIndex);
-
       const movedTodo = inProgress?.children[oldTodoIndex!];
       const newStage = TODOSTAGE.COMPLETED;
 
