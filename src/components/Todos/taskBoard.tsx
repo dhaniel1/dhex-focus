@@ -42,18 +42,6 @@ const TaskBoard = () => {
       return;
     }
 
-    /*     // Find the current stage's todos
-    const currentStageTodos =
-      todoState.find((stage) => stage.stage === fromStage)?.children || [];
-
-    // Create a new array without the dragged item
-    const updatedStageChildren = currentStageTodos.filter(
-      (todo) => todo.id !== item.id
-    );
- */
-    // Update the todoStage property of the moved item
-    // const updatedTodoItem = { ...item, todoStage: toStage };
-
     // Dispatch the update action
     dispatch({
       type: TODOACTIONTYPE.MoveTodo,

@@ -185,9 +185,12 @@ const TodoActions = ({
 const DeleteDialogContent = ({ data }: { data: TodoItem }) => {
   return (
     <div className="bg-gray-100 rounded-md p-3">
-      <p>{data.description}</p>
       <p>
-        <span className="font-medium ">Stage:</span>{" "}
+        <span className="font-medium ">Task:</span>
+        {data.description}
+      </p>
+      <p>
+        <span className="font-medium ">Stage:</span>
         {capitalize(data.todoStage)}
       </p>
     </div>

@@ -62,10 +62,10 @@ export const alarmType = {
 };
 
 export const settings = [
-  { title: SETTINGSTYPE.FocusLevel, icon: ClockBoldIcon, children: {} },
-  { title: SETTINGSTYPE.Alarm, icon: AlarmIcon, children: {} },
-  { title: SETTINGSTYPE.AutoStart, icon: RestartBoldIcon, children: {} },
-  { title: SETTINGSTYPE.Notification, icon: NotificationIcon, children: {} },
+  { title: SETTINGSTYPE.FocusLevel, icon: ClockBoldIcon },
+  { title: SETTINGSTYPE.Alarm, icon: AlarmIcon },
+  { title: SETTINGSTYPE.AutoStart, icon: RestartBoldIcon },
+  { title: SETTINGSTYPE.Notification, icon: NotificationIcon },
 ];
 // type Settings = Record<string, unknown>;
 
