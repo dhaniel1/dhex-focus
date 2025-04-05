@@ -133,8 +133,6 @@ const TodoActions = ({
   const { dispatch } = useTodoContext();
 
   function confirmDelete() {
-    // Call delete logic here
-    console.log("Deleting:", data);
     dispatch({
       type: TODOACTIONTYPE.DeleteTodo,
       payload: { index: dataIndex, todoStage: data.todoStage },
