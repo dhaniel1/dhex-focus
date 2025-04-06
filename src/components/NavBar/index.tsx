@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Button, Popover, Settings } from "..";
-import { SettingsIcon, RestartIcon, GlobeIcon } from "../shared/svgs";
 import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
 import Languages from "../Language";
@@ -10,10 +9,12 @@ import Dialog from "../Dialog";
 
 import { sessionCountInitialState } from "@/lib/utils/static";
 import { useSessionContext } from "@/store";
+import { SVGIcons } from "../shared";
 
 const NavActions = () => {
   const { setSessionState } = useSessionContext();
 
+  const { SettingsIcon, RestartIcon, GlobeIcon } = SVGIcons;
   return (
     <div className="app_layout_content_main_navbar_actions">
       <Button label="New Beta!" variant="primary" className="text-lg" />

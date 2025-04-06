@@ -4,8 +4,9 @@
 } */
 
 import { SVGProps } from "react";
+import dhexFocus from "../../../public/media/svgs/dhex-focus.svg";
 
-export function ClockIcon({
+function ClockIcon({
   stroke = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) {
@@ -54,7 +55,7 @@ export function ClockIcon({
   );
 }
 
-export function TasksIcon({
+function TasksIcon({
   stroke = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) {
@@ -78,7 +79,7 @@ export function TasksIcon({
   );
 }
 
-export const SettingsIcon = ({
+const SettingsIcon = ({
   fill = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) => {
@@ -98,7 +99,7 @@ export const SettingsIcon = ({
   );
 };
 
-export const RestartIcon = ({
+const RestartIcon = ({
   stroke = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) => {
@@ -120,7 +121,7 @@ export const RestartIcon = ({
   );
 };
 
-export const GlobeIcon = ({
+const GlobeIcon = ({
   fill = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) => {
@@ -140,7 +141,7 @@ export const GlobeIcon = ({
   );
 };
 
-export const ArrowRightIcon = ({
+const ArrowRightIcon = ({
   stroke = "currentColor",
   fill = "currentColor",
   ...props
@@ -185,7 +186,7 @@ export const ArrowRightIcon = ({
   </svg>
 );
 
-export const ClockBoldIcon = ({
+const ClockBoldIcon = ({
   stroke = "currentColor",
   fill = "currentColor",
   ...props
@@ -220,7 +221,7 @@ export const ClockBoldIcon = ({
   </svg>
 );
 
-export const NotificationIcon = ({
+const NotificationIcon = ({
   fill = "currentColor",
   // fill = "none",
   ...props
@@ -252,7 +253,7 @@ export const NotificationIcon = ({
   </svg>
 );
 
-export const AlarmIcon = ({ ...props }: SVGProps<SVGSVGElement>) => (
+const AlarmIcon = ({ ...props }: SVGProps<SVGSVGElement>) => (
   <svg
     fill="#000000"
     width="800px"
@@ -267,7 +268,7 @@ export const AlarmIcon = ({ ...props }: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const RestartBoldIcon = ({
+const RestartBoldIcon = ({
   fill = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) => (
@@ -298,7 +299,7 @@ export const RestartBoldIcon = ({
   </svg>
 );
 
-export const ArrowBackIcon = ({
+const ArrowBackIcon = ({
   stroke = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) => (
@@ -328,7 +329,7 @@ export const ArrowBackIcon = ({
   </svg>
 );
 
-export const CheckIcon = ({
+const CheckIcon = ({
   stroke = "currentColor",
   fill = "currentColor",
   ...props
@@ -359,7 +360,7 @@ export const CheckIcon = ({
   </svg>
 );
 
-export const PlusIcon = ({
+const PlusIcon = ({
   stroke = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) => (
@@ -389,7 +390,7 @@ export const PlusIcon = ({
   </svg>
 );
 
-export const EditIcon = ({
+const EditIcon = ({
   stroke = "currentColor",
   fill = "currentColor",
   ...props
@@ -426,7 +427,7 @@ export const EditIcon = ({
   </svg>
 );
 
-export const DeleteIcon = ({
+const DeleteIcon = ({
   stroke = "currentColor",
   ...props
 }: SVGProps<SVGSVGElement>) => (
@@ -483,3 +484,23 @@ export const DeleteIcon = ({
     </g>
   </svg>
 );
+
+const SVGIcons = {
+  dhexFocus,
+  ClockIcon,
+  TasksIcon,
+  SettingsIcon,
+  RestartIcon,
+  GlobeIcon,
+  ArrowRightIcon,
+  ClockBoldIcon,
+  NotificationIcon,
+  AlarmIcon,
+  RestartBoldIcon,
+  ArrowBackIcon,
+  CheckIcon,
+  PlusIcon,
+  EditIcon,
+  DeleteIcon,
+};
+export default SVGIcons;

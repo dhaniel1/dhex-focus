@@ -1,13 +1,15 @@
-import {
+import { routes } from "../routes";
+import { Itab } from "@/components/SideNav";
+import { SVGIcons } from "@/components/shared";
+
+const {
   AlarmIcon,
   ClockBoldIcon,
   ClockIcon,
   NotificationIcon,
   RestartBoldIcon,
   TasksIcon,
-} from "@/components/shared/svgs";
-import { routes } from "../routes";
-import { Itab } from "@/components/SideNav";
+} = SVGIcons;
 
 export enum TASKFORMTYPE {
   CREATE = "create",

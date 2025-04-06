@@ -4,7 +4,7 @@ import React from "react";
 import Button from "../Button";
 import { language } from "@/lib/utils/static";
 import { usePomodoroContext } from "@/store";
-import { CheckIcon } from "../shared/svgs";
+import { SVGIcons } from "../shared";
 import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
 
 const Languages = () => {
@@ -21,7 +21,7 @@ const Languages = () => {
             size="lg"
             key={title}
             variant="ghost"
-            icon={CheckIcon}
+            icon={SVGIcons.CheckIcon}
             iconDimension="2rem"
             iconClassName={
               preferedLanguage !== title.toLowerCase()

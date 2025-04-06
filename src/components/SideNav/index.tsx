@@ -6,8 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import { routes } from "@/lib/routes";
-import { svgs } from "../shared/svgs";
 import { sideNavTabs } from "@/lib/utils/static";
+import { SVGIcons } from "../shared";
 
 export interface Itab {
   title: string;
@@ -41,11 +41,13 @@ function Tabs() {
 }
 
 const Sidenav = () => {
+  const { dhexFocus } = SVGIcons;
+
   return (
     <aside className="app_layout_content_aside">
       <Link href={routes.home.path}>
         <Image
-          src={svgs.dhexFocus}
+          src={dhexFocus}
           width={154}
           height={37}
           alt={"App Logo"}

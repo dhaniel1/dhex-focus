@@ -2,15 +2,17 @@ import React from "react";
 import { TodoItem, TodoStage, useTodoContext } from "@/store/todos";
 
 import Button from "../Button";
-import { PlusIcon } from "../shared/svgs";
+
 import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 import Dialog from "../Dialog";
 import { TaskForm } from "../forms";
 import { TASKFORMTYPE } from "@/lib/utils/static";
 import { TodoStageColumn } from ".";
+import { SVGIcons } from "../shared";
 
 const TaskBoard = () => {
   const { state: todoState, dispatch } = useTodoContext();
+  const { PlusIcon } = SVGIcons;
 
   const handleMoveItem = (
     fromStage: TodoStage,

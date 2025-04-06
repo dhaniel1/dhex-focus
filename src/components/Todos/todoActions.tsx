@@ -4,7 +4,7 @@ import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 import { TaskForm } from "../forms";
 import Dialog from "../Dialog";
 import DeleteDialogContent from "./deleteDialog";
-import { DeleteIcon, EditIcon } from "../shared/svgs";
+import { SVGIcons } from "../shared";
 
 const TodoActions = ({
   data,
@@ -14,6 +14,7 @@ const TodoActions = ({
   dataIndex: number;
 }) => {
   const { dispatch } = useTodoContext();
+  const { DeleteIcon, EditIcon } = SVGIcons;
 
   function confirmDelete() {
     dispatch({

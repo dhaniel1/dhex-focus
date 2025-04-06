@@ -3,7 +3,6 @@
 import { settings, SETTINGSTYPE, TimeType } from "@/lib/utils/static";
 import React, { FC, useState } from "react";
 import Button from "../Button";
-import { ArrowRightIcon } from "../shared/svgs";
 import SubSettingsContainter from "./subSettingsContainter";
 import FocusLevelSetting from "./focusLevelSetting";
 import AlarmSettings from "./alarmSetting";
@@ -11,6 +10,7 @@ import AutoStartSetting from "./autoStartSetting";
 import NotificationSetting from "./notificationSetting";
 import { Separator } from "../ui/separator";
 import { useSessionContext } from "@/store/timer/pomodoroContexts";
+import { SVGIcons } from "../shared";
 
 const extra = [
   { label: "Skip to break", action: "rest" },
@@ -21,6 +21,8 @@ const extra = [
 const Settings: FC = () => {
   const [activeSetting, setActiveSetting] = useState<string | null>(null);
   const { isActive, setActiveTab } = useSessionContext();
+  const { ArrowRightIcon } = SVGIcons;
+
   function makeActive(value: string | null) {
     setActiveSetting(value);
     return;

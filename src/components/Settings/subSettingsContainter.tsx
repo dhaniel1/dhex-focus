@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Button from "../Button";
-import { ArrowBackIcon } from "../shared/svgs";
+import { SVGIcons } from "../shared";
 
 interface ISubCustomize {
   title: string;
@@ -13,6 +13,8 @@ const SubSettingsContainter: FC<ISubCustomize> = ({
   children,
   returnFN,
 }) => {
+  const { ArrowBackIcon } = SVGIcons;
+
   return (
     <div className="w-90 p-2">
       <div className="flex items-center gap-2 justify-left text-lg font-extrabold text-[#334154] ">
