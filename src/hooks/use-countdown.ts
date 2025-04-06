@@ -55,20 +55,17 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
         setSessionState((prevVal) => {
           return { ...prevVal, [activeTab]: prevVal[activeTab] + 1 };
         });
-        setPersistedState((prevVal) => {
-          return { ...prevVal, [activeTab]: prevVal[activeTab] + 1 };
-        });
       }
     },
-    [
-      activeTab,
-      eightyPercentThreshold,
-      setPersistedState,
-      timeRemaining,
-      totalTime,
-    ]
+    [activeTab, eightyPercentThreshold, timeRemaining, totalTime]
   );
 
+  useEffect(
+    function () {
+      setPersistedState(() => sessionState);
+    },
+    [sessionState, setPersistedState]
+  );
   useEffect(() => {
     if (isActive && timeRemaining > 0) {
       intervalRef.current = setInterval(() => {
