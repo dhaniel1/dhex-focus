@@ -26,7 +26,7 @@ const TodoPreview = () => {
             </span>
           </h2>
           <p className="text-primary text-sm pt-2">
-            Select to mark a completed
+            Select to mark as completed
           </p>
         </div>
         <Button
