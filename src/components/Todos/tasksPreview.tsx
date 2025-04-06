@@ -1,63 +1,46 @@
-import React, { FC, useCallback } from "react";
+"use client";
 
-import { RadioGroup } from "../ui/radio-group";
-import { TODOSTAGE, TodoStateItem, useTodoContext } from "@/store/todos";
-import { TODOACTIONTYPE } from "@/store/todos/todoActions";
-import TodoTablet from "./todoTablet";
+import React from "react";
+import Button from "../Button";
+import { useRouter } from "next/navigation";
+import { routes } from "@/lib/routes";
+import { TODOSTAGE, useTodoContext } from "@/store/todos";
+import { TasksInProgress } from ".";
 
-type ITasksInProgress = {
-  inProgress: TodoStateItem | undefined;
-};
+const TasksPreview = () => {
+  const router = useRouter();
+  const { state } = useTodoContext();
 
-const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
-  const { dispatch } = useTodoContext();
-  // const { children } = inProgress;
-
-  const handleValueChange = useCallback(
-    (value: string) => {
-      const oldTodoIndex = inProgress?.children.findIndex(({ description }) => {
-        return description === value;
-      });
-
-      const movedTodo = inProgress?.children[oldTodoIndex!];
-      const newStage = TODOSTAGE.COMPLETED;
-
-      if (oldTodoIndex !== undefined && oldTodoIndex !== null && movedTodo) {
-        dispatch({
-          type: TODOACTIONTYPE.MoveTodo,
-          payload: {
-            newStage,
-            newTodoIndex: 0,
-            oldTodoIndex,
-            movedTodo,
-          },
-        });
-      }
-    },
-    [dispatch, inProgress?.children]
+  const inProgress = state.find(
+    (stateItem) => stateItem.stage === TODOSTAGE.INPROGRESS
   );
 
   return (
-    <div className="m-auto p-2 h-[80vh] w-full flex flex-col gap-2 overflow-scroll bg-gray-50 rounded-lg">
-      <RadioGroup
-        defaultValue={"CHANGE ME"} // TODO: Fix defualt value
-        onValueChange={(value) => {
-          setTimeout(() => handleValueChange(value), 100); // Simulates an api process lol
-        }}
-      >
-        {inProgress?.children.map((data, index) => {
-          return (
-            <TodoTablet
-              key={data.description}
-              data={data}
-              isPreview={true}
-              arrayIndex={index}
-            />
-          );
-        })}
-      </RadioGroup>
+    <div className="w-full h-max">
+      <div className="flex justify-between mb-5 items-start">
+        <div className="flex flex-col">
+          <h2 className="text-left font-bold  text-2xl">
+            Tasks in progress
+            <span className="font-medium text-xl pl-2">
+              {inProgress?.children.length}
+            </span>
+          </h2>
+          <p className="text-primary text-sm pt-2">
+            Select to mark as completed
+          </p>
+        </div>
+        <Button
+          className="text-md font-medium"
+          size="lg"
+          variant="primary"
+          onClick={() => router.push(routes.tasks.path)}
+        >
+          View all Todos
+        </Button>
+      </div>
+      <TasksInProgress inProgress={inProgress} />
     </div>
   );
 };
 
-export default TasksInProgress;
+export default TasksPreview;

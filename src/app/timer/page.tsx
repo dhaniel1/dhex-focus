@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button, Tabs } from "@/components";
-import { TodoPreview } from "@/components/Todos";
+import { TasksPreview } from "@/components/Todos";
 import { tabList } from "@/lib/utils/static";
 
 function Pomodoropage() {
@@ -23,8 +23,9 @@ function Pomodoropage() {
         </div>
       </div>
       <div className="app_timer_tasks">
-        <TodoPreview />
+        <TasksPreview />
       </div>
+      <div className="app_timer_media"></div>
     </div>
   );
 }
