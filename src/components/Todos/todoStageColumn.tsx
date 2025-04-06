@@ -1,9 +1,10 @@
 import React, { FC, useRef } from "react";
-import { TodoItem, TodoStage } from "@/store/todos";
-import TodoTablet from "./todoTablet";
-
 import { useDrop } from "react-dnd";
+
+import { DraggableAndDropable } from "../Dnd";
+
 import { capitalize, cn } from "@/lib/utils";
+import { type TodoItem, type TodoStage } from "@/store/todos";
 
 interface ITodoColumn {
   stage: TodoStage;
@@ -62,7 +63,7 @@ const TodoStageColumn: FC<ITodoColumn> = ({
         ])}
       >
         {items.map((item, index) => (
-          <TodoTablet
+          <DraggableAndDropable
             key={item.id}
             data={item}
             arrayIndex={index}

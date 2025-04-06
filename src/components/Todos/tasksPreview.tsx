@@ -42,7 +42,7 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
       <RadioGroup
         defaultValue={"CHANGE ME"} // TODO: Fix defualt value
         onValueChange={(value) => {
-          setTimeout(() => handleValueChange(value), 10); // Simulates an api process lol
+          setTimeout(() => handleValueChange(value), 100); // Simulates an api process lol
         }}
       >
         {inProgress?.children.map((data, index) => {
@@ -52,7 +52,6 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
               data={data}
               isPreview={true}
               arrayIndex={index}
-              currentStage={TODOSTAGE.INPROGRESS}
             />
           );
         })}

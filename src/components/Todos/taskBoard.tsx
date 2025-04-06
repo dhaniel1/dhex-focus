@@ -4,10 +4,10 @@ import { TodoItem, TodoStage, useTodoContext } from "@/store/todos";
 import Button from "../Button";
 import { PlusIcon } from "../shared/svgs";
 import { TODOACTIONTYPE } from "@/store/todos/todoActions";
-import TodoStageColumn from "./todoStageColumn";
 import Dialog from "../Dialog";
 import { TaskForm } from "../forms";
 import { TASKFORMTYPE } from "@/lib/utils/static";
+import { TodoStageColumn } from ".";
 
 const TaskBoard = () => {
   const { state: todoState, dispatch } = useTodoContext();
