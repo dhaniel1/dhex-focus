@@ -7,26 +7,31 @@ import {
   useRef,
   useState,
 } from "react";
-import { useActiveFocusLevel } from ".";
-import { pomodoroStage, TimeType, TimeValues } from "@/lib/utils/static";
 import { usePomodoroContext } from "@/store";
+import { useActiveFocusLevel, usePersistedState } from ".";
+import {
+  TimeType,
+  TimeValues,
+  pomodoroStage,
+  sessionCountInitialState,
+} from "@/lib/utils/static";
 
 interface IuseCountdownProp {
   setActiveTab: Dispatch<SetStateAction<TimeType>>;
-  setPersistedState: Dispatch<SetStateAction<TimeValues>>;
   activeTab: TimeType;
 }
 
-const useCountdown = ({
-  activeTab,
-  setActiveTab,
-  setPersistedState,
-}: IuseCountdownProp) => {
+const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
   const { activeFocusLevelValues } = useActiveFocusLevel();
   const totalTime = activeFocusLevelValues![activeTab] * 60; // in seconds
   const [timeRemaining, setTimeRemaining] = useState(totalTime);
   const [isActive, setIsActive] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [persistedState, setPersistedState] = usePersistedState<TimeValues>(
+    "session-count",
+    sessionCountInitialState
+  );
+  const [sessionState, setSessionState] = useState<TimeValues>(persistedState);
 
   const {
     state: {
@@ -47,6 +52,9 @@ const useCountdown = ({
   useEffect(
     function () {
       if (eightyPercentThreshold === timeRemaining) {
+        setSessionState((prevVal) => {
+          return { ...prevVal, [activeTab]: prevVal[activeTab] + 1 };
+        });
         setPersistedState((prevVal) => {
           return { ...prevVal, [activeTab]: prevVal[activeTab] + 1 };
         });
@@ -122,6 +130,8 @@ const useCountdown = ({
 
   return {
     formattedTime,
+    sessionState,
+    setSessionState,
     isActive,
     start,
     stop,

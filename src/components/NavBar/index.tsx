@@ -7,18 +7,12 @@ import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
 import Languages from "../Language";
 import Dialog from "../Dialog";
-import { usePersistedState } from "@/hooks";
-import { sessionCountInitialState, TimeValues } from "@/lib/utils/static";
+
+import { sessionCountInitialState } from "@/lib/utils/static";
+import { useSessionContext } from "@/store";
 
 const NavActions = () => {
-  const [, setPersistedState] = usePersistedState<TimeValues>(
-    "session-count",
-    sessionCountInitialState
-  );
-
-  function confirmRestart() {
-    setPersistedState(sessionCountInitialState);
-  }
+  const { setSessionState } = useSessionContext();
 
   return (
     <div className="app_layout_content_main_navbar_actions">
@@ -42,7 +36,7 @@ const NavActions = () => {
         dialogTitle="Restart Session"
         dialogDescription={`Are you sure you want to restart your session?`}
         dialogContent={<></>}
-        confirmAction={confirmRestart}
+        confirmAction={() => setSessionState(sessionCountInitialState)}
       >
         <Button
           label="Restart Session"
