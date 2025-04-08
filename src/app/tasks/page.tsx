@@ -7,7 +7,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 function TodoPage() {
   return (
-    <div className="app_todo">
+    <div id="app_todo" className="app_todo">
       <DndProvider backend={HTML5Backend}>
         <TaskBoard />
       </DndProvider>

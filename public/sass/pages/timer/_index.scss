@@ -58,6 +58,82 @@
         }
       }
     }
+
+    &_media {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 10rem;
+      width: 100%;
+
+      &_music_player {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        width: fit-content;
+        margin: auto;
+        background-color: #f5f6f7;
+        padding: 1rem;
+        border-radius: 4px;
+
+        &_media_groups {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          justify-content: center;
+
+          .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 9rem;
+            width: 6rem;
+            color: #cbd5e1;
+            font-size: medium;
+            font-weight: 500;
+
+            border-radius: 5px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+
+            &.preview {
+              height: 5rem;
+              width: 4rem;
+            }
+
+            .image-over {
+              width: 70px;
+              height: 100%;
+              cursor: pointer;
+
+              &:hover {
+                transform: scale(1.05);
+                transition: transform 0.3s ease;
+              }
+            }
+          }
+        }
+
+        &_media_controls {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          width: 15rem;
+
+          .control-button {
+            width: 2rem;
+            height: 2rem;
+
+            :hover {
+              transform: scale(1.05);
+              transition: transform 0.7s ease-in-out;
+            }
+          }
+        }
+      }
+    }
   }
 
   &_tasks {

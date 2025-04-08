@@ -62,7 +62,7 @@ const Button = ({
           style={{ width: iconDimension, height: iconDimension }}
         />
       )}
-      {label || children || "Button"}
+      {label || children}
       {IconAfter && (
         <IconAfter
           className={cn("tab-icon", iconAfterClassName)}

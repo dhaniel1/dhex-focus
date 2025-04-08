@@ -7,7 +7,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { routes } from "@/lib/routes";
 import { sideNavTabs } from "@/lib/utils/static";
-import { SVGIcons } from "../shared";
+import { SVGIcons } from "@/lib/assets";
 
 export interface Itab {
   title: string;

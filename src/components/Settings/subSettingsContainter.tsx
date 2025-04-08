@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Button from "../Button";
-import { SVGIcons } from "../shared";
+import { SVGIcons } from "@/lib/assets";
 
 interface ISubCustomize {
   title: string;

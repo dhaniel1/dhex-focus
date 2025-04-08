@@ -4,14 +4,17 @@ import React from "react";
 import Button from "../Button";
 import { language } from "@/lib/utils/static";
 import { usePomodoroContext } from "@/store";
-import { SVGIcons } from "../shared";
+
 import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
+import { SVGIcons } from "@/lib/assets";
 
 const Languages = () => {
   const {
     state: { preferedLanguage },
     dispatch,
   } = usePomodoroContext();
+
+  const { CheckIcon } = SVGIcons;
 
   return (
     <div className="flex w-40 flex-col">
@@ -21,7 +24,7 @@ const Languages = () => {
             size="lg"
             key={title}
             variant="ghost"
-            icon={SVGIcons.CheckIcon}
+            icon={CheckIcon}
             iconDimension="2rem"
             iconClassName={
               preferedLanguage !== title.toLowerCase()

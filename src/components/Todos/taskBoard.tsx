@@ -8,7 +8,7 @@ import Dialog from "../Dialog";
 import { TaskForm } from "../forms";
 import { TASKFORMTYPE } from "@/lib/utils/static";
 import { TodoStageColumn } from ".";
-import { SVGIcons } from "../shared";
+import { SVGIcons } from "@/lib/assets";
 
 const TaskBoard = () => {
   const { state: todoState, dispatch } = useTodoContext();

@@ -1,6 +1,7 @@
 import { routes } from "../routes";
 import { Itab } from "@/components/SideNav";
-import { SVGIcons } from "@/components/shared";
+import { images, SVGIcons } from "@/lib/assets";
+import { sounds } from "../assets";
 
 const {
   AlarmIcon,
@@ -102,3 +103,26 @@ export const sessionCountInitialState = {
   rest: 0,
   longRest: 0,
 };
+
+export const lofiSound = [
+  {
+    title: "Lofi 1",
+    audioSrc: sounds.lofi.lofi1,
+    image: images.lofiImages.lofi1_img,
+  },
+  {
+    title: "Lofi 2",
+    audioSrc: sounds.lofi.lofi2,
+    image: images.lofiImages.lofi2_img,
+  },
+  {
+    title: "Lofi 3",
+    audioSrc: sounds.lofi.lofi3,
+    image: images.lofiImages.lofi3_img,
+  },
+  {
+    title: "Lofi 4",
+    audioSrc: sounds.lofi.lofi4,
+    image: images.lofiImages.lofi4_img,
+  },
+];

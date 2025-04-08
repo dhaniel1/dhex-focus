@@ -9,7 +9,7 @@ import Dialog from "../Dialog";
 
 import { sessionCountInitialState } from "@/lib/utils/static";
 import { useSessionContext } from "@/store";
-import { SVGIcons } from "../shared";
+import { SVGIcons } from "@/lib/assets";
 
 const NavActions = () => {
   const { setSessionState } = useSessionContext();

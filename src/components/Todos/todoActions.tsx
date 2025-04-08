@@ -4,7 +4,7 @@ import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 import { TaskForm } from "../forms";
 import Dialog from "../Dialog";
 import DeleteDialogContent from "./deleteDialog";
-import { SVGIcons } from "../shared";
+import { SVGIcons } from "@/lib/assets";
 
 const TodoActions = ({
   data,
