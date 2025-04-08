@@ -10,7 +10,7 @@ import { Input as ShadCNInput } from "../ui/input";
 import { FieldError } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { icons } from "@/lib/assets/icons";
+import { SVGIcons } from "@/lib/assets";
 // import { RenderIf } from "../RenderIf";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -31,6 +31,7 @@ const Input: FC<InputProps> = ({
   ...rest
 }) => {
   const [isPasswordField, setIsPasswordField] = useState(type === "password");
+  const { eye } = SVGIcons;
 
   return (
     <FormItem>
@@ -70,7 +71,7 @@ const Input: FC<InputProps> = ({
                 className="absolute w-5 h-5 right-2 top-1/2 -translate-y-1/2 transform cursor-pointer"
                 width={10}
                 height={10}
-                src={icons.eye}
+                src={eye}
                 alt={type}
                 onClick={() => {
                   setIsPasswordField((prev) => !prev);
