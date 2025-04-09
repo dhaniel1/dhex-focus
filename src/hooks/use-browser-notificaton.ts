@@ -1,3 +1,5 @@
+"use client";
+
 import { capitalize } from "@/lib/utils";
 import { TIMETYPE, TimeType } from "@/lib/utils/static";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
