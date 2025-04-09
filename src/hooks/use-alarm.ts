@@ -27,7 +27,7 @@ const useAlarm = () => {
       }
     },
 
-    [alarm.audioSrc, alarmVolumeLevel]
+    [alarm.audioSrc]
   );
 
   useEffect(
