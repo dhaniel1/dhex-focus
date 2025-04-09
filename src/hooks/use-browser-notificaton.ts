@@ -5,10 +5,10 @@ import { TIMETYPE, TimeType } from "@/lib/utils/static";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import useAlarm from "./use-alarm";
 
-function createNotification(title: TimeType) {
+function createNotification(activeTab: TimeType) {
   let notificationDetails;
 
-  switch (title) {
+  switch (activeTab) {
     case TIMETYPE.TIMER:
       notificationDetails = {
         title: "Focus",
@@ -48,9 +48,17 @@ function checkNotificationPermission(
 
   if (Notification.permission === "granted") {
     setNotificationPermission(true);
+    console.log("Notification has been initially granted");
   } else if (Notification.permission !== "denied") {
     Notification.requestPermission().then((permission) => {
-      setNotificationPermission(permission === "granted");
+      if (permission === "granted") {
+        setNotificationPermission(true);
+        console.log("Notification has now been granted");
+      }
+      if (permission === "denied") {
+        setNotificationPermission(false);
+        console.log("Notification has been denied, sorry");
+      }
     });
   }
 }

@@ -22,12 +22,12 @@ const useAlarm = () => {
         alarmRef.current.pause();
       }
 
-      if (alarm.audioSrc) {
-        alarmRef.current = new Audio(alarm.audioSrc);
+      if (alarm?.audioSrc) {
+        alarmRef.current = new Audio(alarm?.audioSrc);
       }
     },
 
-    [alarm.audioSrc]
+    [alarm?.audioSrc]
   );
 
   useEffect(
@@ -51,7 +51,7 @@ const useAlarm = () => {
       }
     },
 
-    [play, alarm.audioSrc]
+    [play, alarm?.audioSrc]
   );
 
   return setPlay;
