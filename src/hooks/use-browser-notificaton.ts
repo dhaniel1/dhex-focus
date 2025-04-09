@@ -85,10 +85,10 @@ const useBrowserNotificaton = (title: TimeType) => {
 
   const setPlay = useAlarm();
 
+  notificationPermissionStatus(setNotificationPermission);
+
   useEffect(
     function () {
-      notificationPermissionStatus(setNotificationPermission);
-
       if (notificationPermission && notify) {
         notification.current = createNotification(title);
         setPlay(notify);
