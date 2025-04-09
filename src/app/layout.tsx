@@ -8,6 +8,7 @@ import { NavBar, SideNav } from "@/components";
 import { SessionProvider } from "@/store/timer/pomodoroProviders";
 import { PomodoroProvider } from "@/store";
 import { TodoProvider } from "@/store/todos/todoProviders";
+import { MusicProvider } from "@/store/music";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,19 +35,21 @@ export default function RootLayout({
       <PomodoroProvider>
         <SessionProvider>
           <TodoProvider>
-            <body
-              className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-              <main className="app_layout">
-                <div className="app_layout_content">
-                  <SideNav />
-                  <div className="app_layout_content_main">
-                    <NavBar />
-                    {children}
+            <MusicProvider>
+              <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+              >
+                <main className="app_layout">
+                  <div className="app_layout_content">
+                    <SideNav />
+                    <div className="app_layout_content_main">
+                      <NavBar />
+                      {children}
+                    </div>
                   </div>
-                </div>
-              </main>
-            </body>
+                </main>
+              </body>
+            </MusicProvider>
           </TodoProvider>
         </SessionProvider>
       </PomodoroProvider>
