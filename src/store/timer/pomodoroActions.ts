@@ -1,3 +1,5 @@
+import { ALARMTYPE } from "@/lib/utils/static";
+
 export enum POMODOROACTIONTYPE {
   UpdateFocusLevel,
   UpdateAlarmType,
@@ -15,7 +17,7 @@ export interface UpdateFocusLevel {
 
 export interface UpdateAlarmType {
   type: POMODOROACTIONTYPE.UpdateAlarmType;
-  payload: string;
+  payload: ALARMTYPE;
 }
 
 export interface UpdateAlarmVolumeLevel {

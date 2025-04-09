@@ -16,6 +16,7 @@ export enum TASKFORMTYPE {
   CREATE = "create",
   EDIT = "edit",
 }
+export type TaskFormType = `${TASKFORMTYPE}`;
 
 export enum ALARMTYPE {
   SOUND1 = "sound1",
@@ -23,8 +24,7 @@ export enum ALARMTYPE {
   SOUND3 = "sound3",
   MUTE = "mute",
 }
-
-export type TaskFormType = `${TASKFORMTYPE}`;
+// export type AlarmType = `${ALARMTYPE}`;
 
 export enum SETTINGSTYPE {
   FocusLevel = "Focus Level",

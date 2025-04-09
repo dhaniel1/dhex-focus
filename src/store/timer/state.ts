@@ -7,7 +7,7 @@ export const initialPomodoroState = {
     breaks: true,
   },
   alarm: {
-    soundType: ALARMTYPE.SOUND3,
+    soundType: ALARMTYPE.SOUND2,
     alarmVolumeLevel: 90,
   },
   notifications: true,

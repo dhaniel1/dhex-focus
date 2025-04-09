@@ -37,7 +37,7 @@ function createNotification(title: TimeType) {
   });
 }
 
-function notificationPermissionStatus(
+/* function notificationPermissionStatus(
   setNotificationPermission: Dispatch<SetStateAction<boolean>>
 ) {
   if (!("Notification" in window)) {
@@ -74,7 +74,7 @@ function notificationPermissionStatus(
   return;
   // At last, if the user has denied notifications, and you
   // want to be respectful there is no need to bother them anymore.
-}
+} */
 
 const useBrowserNotificaton = (title: TimeType) => {
   // Create a notification
@@ -85,7 +85,32 @@ const useBrowserNotificaton = (title: TimeType) => {
 
   const setPlay = useAlarm();
 
-  notificationPermissionStatus(setNotificationPermission);
+  useEffect(() => {
+    function notificationPermissionStatus(
+      setNotificationPermission: Dispatch<SetStateAction<boolean>>
+    ) {
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      } else if (Notification.permission === "granted") {
+        setNotificationPermission(true);
+        console.log("Notification has been initially granted");
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            setNotificationPermission(true);
+            console.log("Notification has now been granted");
+          }
+          if (permission === "denied") {
+            setNotificationPermission(false);
+            console.log("Notification has been denied, sorry");
+          }
+        });
+      }
+
+      return;
+    }
+    notificationPermissionStatus(setNotificationPermission);
+  }, []);
 
   useEffect(
     function () {
