@@ -6,6 +6,7 @@ import { usePomodoroContext } from "@/store";
 import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
 import { capitalize, cn } from "@/lib/utils";
 import { Alarms, alarms } from "@/lib/utils/static";
+import { useAlarm } from "@/hooks";
 
 const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
   const {
@@ -14,6 +15,7 @@ const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
     },
     dispatch,
   } = usePomodoroContext();
+  const setPlay = useAlarm();
 
   return (
     <div className="flex">
@@ -22,12 +24,13 @@ const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
           <Button
             key={title}
             variant="outline"
-            onClick={() =>
+            onClick={() => {
               dispatch({
                 type: POMODOROACTIONTYPE.UpdateAlarmType,
                 payload: title,
-              })
-            }
+              });
+              setPlay(true);
+            }}
             className={cn(
               "font-medium text-md not-first:rounded-tl-none not-first:rounded-bl-none not-last:rounded-tr-none not-last:rounded-br-none",
               {

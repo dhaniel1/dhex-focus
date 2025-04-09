@@ -14,7 +14,7 @@ const useAlarm = () => {
   const alarmRef = useRef<HTMLAudioElement | null>(null);
 
   const SoundIndex = alarms.findIndex(({ title }) => title === soundType);
-  const { audioSrc } = alarms[SoundIndex];
+  const alarm = alarms?.[SoundIndex];
 
   useEffect(
     function () {
@@ -22,27 +22,38 @@ const useAlarm = () => {
         alarmRef.current.pause();
       }
 
-      alarmRef.current = new Audio(audioSrc);
-      alarmRef.current.volume = alarmVolumeLevel / 100;
-      alarmRef.current.play();
+      if (alarm.audioSrc) {
+        alarmRef.current = new Audio(alarm.audioSrc);
+      }
     },
 
-    [alarmVolumeLevel, audioSrc]
+    [alarm.audioSrc, alarmVolumeLevel]
   );
 
   useEffect(
     function () {
-      if (alarmRef.current && play) {
+      if (alarmRef.current) {
+        alarmRef.current.volume = alarmVolumeLevel / 100;
+      }
+    },
+
+    [alarmVolumeLevel]
+  );
+
+  useEffect(
+    function () {
+      if (alarmRef.current) {
         alarmRef.current.pause();
       }
 
-      alarmRef.current?.play();
+      if (alarmRef.current && play) {
+        alarmRef.current.play();
+      }
     },
 
-    [play]
+    [play, alarm.audioSrc]
   );
 
-  console.log(alarmRef);
   return setPlay;
 };
 
