@@ -1,3 +1,5 @@
+import { ALARMTYPE } from "@/lib/utils/static";
+
 export const initialPomodoroState = {
   focusLevel: "baby step",
   autoStart: {
@@ -5,7 +7,7 @@ export const initialPomodoroState = {
     breaks: true,
   },
   alarm: {
-    soundType: "long",
+    soundType: ALARMTYPE.SOUND3,
     alarmVolumeLevel: 90,
   },
   notifications: true,

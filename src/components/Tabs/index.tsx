@@ -38,7 +38,7 @@ const Tabs: FC<IProps> = ({ tabs }) => {
     stop,
   } = useSessionContext();
 
-  useEffect(function () {}, [sessionState]);
+  useEffect(function () {}, [sessionState]); // TODO: confirm what this does
 
   console.log("I double render - fix me");
   if (!mounted) return null;

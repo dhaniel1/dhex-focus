@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 import Button from "../Button";
 import { usePomodoroContext } from "@/store";
 import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
-import { cn } from "@/lib/utils";
+import { capitalize, cn } from "@/lib/utils";
+import { Alarms, alarms } from "@/lib/utils/static";
 
-const sounds = ["Sound1", "Sound2", "Long", "Mute"];
-
-const SoundsButton = () => {
+const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
   const {
     state: {
       alarm: { soundType },
@@ -18,26 +17,26 @@ const SoundsButton = () => {
 
   return (
     <div className="flex">
-      {sounds.map((item) => {
+      {alarms.map(({ title }) => {
         return (
           <Button
-            key={item}
+            key={title}
             variant="outline"
             onClick={() =>
               dispatch({
                 type: POMODOROACTIONTYPE.UpdateAlarmType,
-                payload: item,
+                payload: title,
               })
             }
             className={cn(
               "font-medium text-md not-first:rounded-tl-none not-first:rounded-bl-none not-last:rounded-tr-none not-last:rounded-br-none",
               {
                 "bg-accent font-bold text-accent-foreground":
-                  soundType.toLowerCase() == item.toLowerCase(),
+                  soundType.toLowerCase() == title.toLowerCase(),
               }
             )}
           >
-            {item}
+            {capitalize(title)}
           </Button>
         );
       })}
@@ -56,7 +55,7 @@ const AlarmSettings = () => {
   return (
     <div className="flex flex-col gap-4 items-left space-x-2 text-lg text-[#334154] font-bold mt-4 w-full justify-between">
       <p>Alarm on Completion</p>
-      <SoundsButton />
+      <SoundsButton alarms={alarms} />
       <div
         id="volume level"
         className="flex flex-col w-full justify-between items-center m-0"

@@ -16,7 +16,7 @@ const SubSettingsContainter: FC<ISubCustomize> = ({
   const { ArrowBackIcon } = SVGIcons;
 
   return (
-    <div className="w-90 p-2">
+    <div className="w-95 p-2">
       <div className="flex items-center gap-2 justify-left text-lg font-extrabold text-[#334154] ">
         <Button
           variant="ghost"

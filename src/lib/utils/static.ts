@@ -17,6 +17,13 @@ export enum TASKFORMTYPE {
   EDIT = "edit",
 }
 
+export enum ALARMTYPE {
+  SOUND1 = "sound1",
+  SOUND2 = "sound2",
+  SOUND3 = "sound3",
+  MUTE = "mute",
+}
+
 export type TaskFormType = `${TASKFORMTYPE}`;
 
 export enum SETTINGSTYPE {
@@ -32,8 +39,14 @@ export enum POMODOROSTAGE {
   LONGREST = "Long Rest",
 }
 
+export enum TIMETYPE {
+  TIMER = "timer",
+  REST = "rest",
+  LONGREST = "longRest",
+}
+
 export type FocusLevelType = "baby step" | "popular" | "medium" | "extended";
-export type TimeType = "timer" | "rest" | "longRest";
+export type TimeType = `${TIMETYPE}`;
 
 // Define the structure for time values
 export type TimeValues = {
@@ -51,19 +64,19 @@ export const sideNavTabs: Itab[] = [
 ];
 
 export const focusLevels: FocusLevel[] = [
-  { "baby step": { timer: 10, rest: 5, longRest: 10 } },
+  { "baby step": { timer: 1, rest: 5, longRest: 10 } },
   { popular: { timer: 20, rest: 5, longRest: 15 } },
   { medium: { timer: 40, rest: 8, longRest: 20 } },
   { extended: { timer: 60, rest: 10, longRest: 25 } },
 ];
 
-export const alarmType = {
+/* export const alarmType = {
   sound1: true,
   sound2: false,
   sound3: false,
   mute: false,
 };
-
+ */
 export const settings = [
   { title: SETTINGSTYPE.FocusLevel, icon: ClockBoldIcon },
   { title: SETTINGSTYPE.Alarm, icon: AlarmIcon },
@@ -126,3 +139,12 @@ export const lofiSound = [
     image: images.lofiImages.lofi4_img,
   },
 ];
+
+export const alarms = [
+  { title: ALARMTYPE.SOUND1, audioSrc: sounds.alarms.sound1 },
+  { title: ALARMTYPE.SOUND2, audioSrc: sounds.alarms.sound2 },
+  { title: ALARMTYPE.SOUND3, audioSrc: sounds.alarms.sound3 },
+  { title: ALARMTYPE.MUTE, audioSrc: sounds.alarms.sound3 },
+];
+
+export type Alarms = ReturnType<() => typeof alarms>;

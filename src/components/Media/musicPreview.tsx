@@ -28,8 +28,6 @@ const MusicPreview: FC<MusicPreviewProps> = ({ tracks = lofiSound }) => {
     setContainer(document.getElementById("app_timer")!);
   }, []);
 
-  console.log("container: ", container);
-
   const {
     currentTrackIndex,
     currentTrack,
@@ -44,7 +42,6 @@ const MusicPreview: FC<MusicPreviewProps> = ({ tracks = lofiSound }) => {
     setVolume,
   } = useMusicContext();
 
-  console.log("currentTrack: ", currentTrack);
   const displayCurrentTrack = currentTrack || lofiSound[0];
 
   const { PlayIcon, NextIcon, PauseIcon, PreviousIcon, ExpandIcon } = SVGIcons;
