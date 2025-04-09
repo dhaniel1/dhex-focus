@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { alarms } from "@/lib/utils/static";
+import { alarms, ALARMTYPE } from "@/lib/utils/static";
 import { usePomodoroContext } from "@/store";
 
 const useAlarm = () => {
@@ -14,7 +14,7 @@ const useAlarm = () => {
   const alarmRef = useRef<HTMLAudioElement | null>(null);
 
   const SoundIndex = alarms.findIndex(({ title }) => title === soundType);
-  const alarm = alarms?.[SoundIndex];
+  const alarm = soundType === ALARMTYPE.MUTE ? null : alarms?.[SoundIndex];
 
   useEffect(
     function () {

@@ -64,7 +64,7 @@ export const sideNavTabs: Itab[] = [
 ];
 
 export const focusLevels: FocusLevel[] = [
-  { "baby step": { timer: 1, rest: 5, longRest: 10 } },
+  { "baby step": { timer: 10, rest: 5, longRest: 10 } },
   { popular: { timer: 20, rest: 5, longRest: 15 } },
   { medium: { timer: 40, rest: 8, longRest: 20 } },
   { extended: { timer: 60, rest: 10, longRest: 25 } },
@@ -148,3 +148,30 @@ export const alarms = [
 ];
 
 export type Alarms = ReturnType<() => typeof alarms>;
+
+interface NotificationDetails {
+  title: string;
+  body: string;
+}
+
+export function getNotificationDetails(title: TimeType): NotificationDetails {
+  switch (title) {
+    case TIMETYPE.TIMER:
+      return {
+        title: "Focus",
+        body: "Let's hit our goal again",
+      };
+    case TIMETYPE.REST:
+      return {
+        title: "Rest",
+        body: "Let's go on a short break",
+      };
+    case TIMETYPE.LONGREST:
+      return {
+        title: "Long Rest",
+        body: "Let's take a short nap to freshen up our mind",
+      };
+    default:
+      return { title: "Unknown", body: "Not sure what to do" };
+  }
+}

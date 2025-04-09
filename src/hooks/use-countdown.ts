@@ -10,7 +10,7 @@ import {
 import { usePomodoroContext } from "@/store";
 import {
   useActiveFocusLevel,
-  useBrowserNotificaton,
+  useBrowserNotification,
   usePersistedState,
 } from ".";
 import {
@@ -27,7 +27,7 @@ interface IuseCountdownProp {
 
 const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
   const { activeFocusLevelValues } = useActiveFocusLevel();
-  const totalTime = activeFocusLevelValues![activeTab] * 60; // in seconds
+  const totalTime /* in seconds */ = activeFocusLevelValues![activeTab] * 60;
   const [timeRemaining, setTimeRemaining] = useState(totalTime);
   const [isActive, setIsActive] = useState(false);
   const [persistedState, setPersistedState] = usePersistedState<TimeValues>(
@@ -37,8 +37,7 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
   const [sessionState, setSessionState] = useState<TimeValues>(persistedState);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const { setNotify } = useBrowserNotificaton(activeTab);
+  const { showNotification } = useBrowserNotification();
 
   const {
     state: {
@@ -79,8 +78,7 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
       intervalRef.current = setInterval(() => {
         setTimeRemaining((prev) => {
           if (prev <= 1) {
-            setNotify(true);
-
+            showNotification(activeTab);
             if (breaks) {
               const activeStageIndex = pomodoroStage.findIndex(
                 (value) => value === activeTab
@@ -93,7 +91,7 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
             }
             clearInterval(intervalRef.current!);
             setIsActive(false);
-            return 0;
+            return totalTime;
           }
           return prev - 1;
         });
@@ -110,7 +108,7 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
     breaks,
     isActive,
     setActiveTab,
-    setNotify,
+    showNotification,
     timeRemaining,
     totalTime,
   ]);

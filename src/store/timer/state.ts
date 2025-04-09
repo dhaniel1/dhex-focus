@@ -4,13 +4,13 @@ export const initialPomodoroState = {
   focusLevel: "baby step",
   autoStart: {
     pomodoro: true,
-    breaks: true,
+    breaks: false,
   },
   alarm: {
     soundType: ALARMTYPE.SOUND2,
     alarmVolumeLevel: 90,
   },
-  notifications: true,
+  notifications: false,
   preferedLanguage: "english",
 };
 
