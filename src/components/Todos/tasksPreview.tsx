@@ -35,7 +35,7 @@ const TasksPreview = () => {
           variant="primary"
           onClick={() => router.push(routes.tasks.path)}
         >
-          View all Todos
+          Manage Todos
         </Button>
       </div>
       <TasksInProgress inProgress={inProgress} />

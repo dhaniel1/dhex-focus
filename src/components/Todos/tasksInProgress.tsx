@@ -43,6 +43,12 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
           setTimeout(() => handleValueChange(value), 100); // Simulates an api process lol
         }}
       >
+        {!inProgress?.children.length && (
+          <div className="text-gray-400 text-center p-4">
+            You have no tasks in progress
+          </div>
+        )}
+
         {inProgress?.children.map((data, index) => {
           return (
             <TodoTablet
