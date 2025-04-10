@@ -11,7 +11,6 @@ const useBrowserNotificaton = () => {
     boolean | undefined
   >(undefined);
   const notificationRef = useRef<Notification | null>(null);
-
   const playAlarm = useAlarm();
   const {
     state: { notifications },
@@ -53,13 +52,18 @@ const useBrowserNotificaton = () => {
       requireInteraction: true,
     });
 
-    playAlarm(true);
+    playAlarm(() => {
+      return { isPlaying: true, duration: playDuration };
+    });
 
-    // Auto-close after 5 seconds
+    // Auto-close after 6 seconds
+    const playDuration = 6;
     const timeout = setTimeout(() => {
       notification.close();
-      playAlarm(false);
-    }, 6000);
+      playAlarm((prevVal) => {
+        return { ...prevVal, isPlaying: false };
+      });
+    }, playDuration * 1000);
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {

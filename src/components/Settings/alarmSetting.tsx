@@ -5,7 +5,7 @@ import Button from "../Button";
 import { usePomodoroContext } from "@/store";
 import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
 import { capitalize, cn } from "@/lib/utils";
-import { Alarms, alarms } from "@/lib/utils/static";
+import { Alarms, alarms, ALARMTYPE } from "@/lib/utils/static";
 import { useAlarm } from "@/hooks";
 
 const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
@@ -17,6 +17,21 @@ const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
   } = usePomodoroContext();
   const setPlay = useAlarm();
 
+  function handleClick(title: ALARMTYPE) {
+    dispatch({
+      type: POMODOROACTIONTYPE.UpdateAlarmType,
+      payload: title,
+    });
+
+    setPlay(() => {
+      const val =
+        title === ALARMTYPE.MUTE
+          ? { isPlaying: false, duration: 3 }
+          : { isPlaying: true, duration: 3 };
+      return val;
+    });
+  }
+
   return (
     <div className="flex">
       {alarms.map(({ title }) => {
@@ -24,13 +39,7 @@ const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
           <Button
             key={title}
             variant="outline"
-            onClick={() => {
-              dispatch({
-                type: POMODOROACTIONTYPE.UpdateAlarmType,
-                payload: title,
-              });
-              setPlay(true);
-            }}
+            onClick={() => handleClick(title)}
             className={cn(
               "font-medium text-md not-first:rounded-tl-none not-first:rounded-bl-none not-last:rounded-tr-none not-last:rounded-br-none",
               {

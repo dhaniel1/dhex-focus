@@ -3,7 +3,10 @@ import { alarms, ALARMTYPE } from "@/lib/utils/static";
 import { usePomodoroContext } from "@/store";
 
 const useAlarm = () => {
-  const [play, setPlay] = useState<boolean>();
+  const [{ isPlaying, duration }, setPlay] = useState({
+    isPlaying: false,
+    duration: 3,
+  });
 
   const {
     state: {
@@ -21,13 +24,15 @@ const useAlarm = () => {
       if (alarmRef.current) {
         alarmRef.current.pause();
       }
-
+      if (soundType === ALARMTYPE.MUTE) {
+        alarmRef.current = null;
+      }
       if (alarm?.audioSrc) {
         alarmRef.current = new Audio(alarm?.audioSrc);
       }
     },
 
-    [alarm?.audioSrc]
+    [alarm?.audioSrc, soundType]
   );
 
   useEffect(
@@ -46,12 +51,19 @@ const useAlarm = () => {
         alarmRef.current.pause();
       }
 
-      if (alarmRef.current && play) {
+      if (alarmRef.current && isPlaying) {
         alarmRef.current.play();
       }
+
+      const timeout = setTimeout(() => {
+        setPlay((prevVal) => {
+          return { ...prevVal, isPlaying: false };
+        });
+      }, duration * 1000);
+      return () => clearTimeout(timeout);
     },
 
-    [play, alarm?.audioSrc]
+    [isPlaying, alarm?.audioSrc, duration]
   );
 
   return setPlay;

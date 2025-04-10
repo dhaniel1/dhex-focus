@@ -144,7 +144,7 @@ export const alarms = [
   { title: ALARMTYPE.SOUND1, audioSrc: sounds.alarms.sound1 },
   { title: ALARMTYPE.SOUND2, audioSrc: sounds.alarms.sound2 },
   { title: ALARMTYPE.SOUND3, audioSrc: sounds.alarms.sound3 },
-  { title: ALARMTYPE.MUTE, audioSrc: sounds.alarms.sound3 },
+  { title: ALARMTYPE.MUTE, audioSrc: null },
 ];
 
 export type Alarms = ReturnType<() => typeof alarms>;
