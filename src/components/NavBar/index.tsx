@@ -12,9 +12,13 @@ import { useSessionContext } from "@/store";
 import { SVGIcons } from "@/lib/assets";
 
 const NavActions = () => {
-  const { setSessionState } = useSessionContext();
+  const {
+    sessionState: { timer, rest, longRest },
+    setSessionState,
+  } = useSessionContext();
 
   const { SettingsIcon, RestartIcon, GlobeIcon } = SVGIcons;
+
   return (
     <div className="app_layout_content_main_navbar_actions">
       <Button label="New Beta!" variant="primary" className="text-lg" />
@@ -33,20 +37,30 @@ const NavActions = () => {
         <Settings />
       </Popover>
 
-      <Dialog
-        dialogTitle="Restart Session"
-        dialogDescription={`Are you sure you want to restart your session?`}
-        dialogContent={<></>}
-        confirmAction={() => setSessionState(sessionCountInitialState)}
-      >
-        <Button
-          label="Restart Session"
-          variant="ghost"
-          className="text-lg gap-1!"
-          icon={RestartIcon}
-          iconDimension="2rem"
-        />
-      </Dialog>
+      {!!timer && !!rest && !!longRest && (
+        <Dialog
+          dialogTitle="Restart Session"
+          dialogDescription={`Are you sure you want to restart your session?`}
+          dialogContent={<></>}
+          confirmAction={() => setSessionState(sessionCountInitialState)}
+        >
+          <Button
+            label="Restart Session"
+            variant="ghost"
+            className="text-lg gap-1!"
+            icon={RestartIcon}
+            iconDimension="2rem"
+          />
+        </Dialog>
+      )}
+      <Button
+        label="Restart Session"
+        variant="ghost"
+        className="text-lg gap-1!"
+        icon={RestartIcon}
+        iconDimension="2rem"
+        onClick={() => alert("You have no recorded session")}
+      />
 
       <Popover
         triggerComponent={
