@@ -73,7 +73,9 @@ const TodoStageColumn: FC<ITodoColumn> = ({
         ))}
 
         {items.length === 0 && (
-          <div className="text-gray-400 text-center p-4">Drop items here</div>
+          <div className="text-gray-400 text-center p-4">
+            Create or Drop items here
+          </div>
         )}
       </div>
     </div>
