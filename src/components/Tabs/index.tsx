@@ -46,7 +46,7 @@ const Tabs: FC<IProps> = ({ tabs }) => {
   return (
     <ShadCNTabs
       defaultValue={tabs[0].value}
-      className="w-3/4 items-center gap-15"
+      className="w-3/4 sm:w-1/2 items-center gap-6 md:gap-15"
     >
       <TabsList>
         {tabs?.map(({ value, label }) => {
@@ -56,10 +56,13 @@ const Tabs: FC<IProps> = ({ tabs }) => {
               value={value}
               disabled={isActive && value !== activeTab}
               onClick={() => setActiveTab(value)}
-              className={cn("text-[#069668]", {
-                "text-[#2463EB]": value === "timer",
-                "border-b-1": value === activeTab,
-              })}
+              className={cn(
+                "text-[#069668] text-[1.2rem] md:text-2xl p-2 mx-3 md:p-3 md:mx-5",
+                {
+                  "text-[#2463EB]": value === "timer",
+                  "border-b-1": value === activeTab,
+                }
+              )}
             >
               <>
                 {(label && capitalize(label)) || capitalize(value)}

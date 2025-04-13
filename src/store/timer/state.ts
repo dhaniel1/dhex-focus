@@ -15,3 +15,9 @@ export const initialPomodoroState = {
 };
 
 export type PomodoroState = ReturnType<() => typeof initialPomodoroState>;
+
+export const sessionCountInitialState = {
+  timer: 3,
+  rest: 0,
+  longRest: 0,
+};

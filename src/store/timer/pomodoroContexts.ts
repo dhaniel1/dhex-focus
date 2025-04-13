@@ -1,13 +1,13 @@
 "use client";
 
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
-import { type PomodoroState, initialPomodoroState } from "./state";
-import { PomodoroActions } from "./pomodoroActions";
 import {
-  TimeType,
-  TimeValues,
+  type PomodoroState,
+  initialPomodoroState,
   sessionCountInitialState,
-} from "@/lib/utils/static";
+} from "./state";
+import { PomodoroActions } from "./pomodoroActions";
+import { TimeType, TimeValues } from "@/lib/utils/static";
 
 interface IPomodoroContext {
   state: PomodoroState;

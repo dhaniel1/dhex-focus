@@ -4,12 +4,13 @@ import React from "react";
 import { Button, Popover, Settings } from "..";
 import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
-import Languages from "../Language";
+// import Languages from "../Language";
 import Dialog from "../Dialog";
 
-import { sessionCountInitialState } from "@/lib/utils/static";
 import { useSessionContext } from "@/store";
 import { SVGIcons } from "@/lib/assets";
+import Image from "next/image";
+import { sessionCountInitialState } from "@/store/timer/state";
 
 const NavActions = () => {
   const {
@@ -17,18 +18,21 @@ const NavActions = () => {
     setSessionState,
   } = useSessionContext();
 
-  const { SettingsIcon, RestartIcon, GlobeIcon } = SVGIcons;
+  console.log(timer, rest, longRest);
+
+  const { SettingsIcon, RestartIcon /* GlobeIcon */ } = SVGIcons;
 
   return (
     <div className="app_layout_content_main_navbar_actions">
-      <Button label="New Beta!" variant="primary" className="text-lg" />
+      {/* <Button label="New Beta!" variant="primary" className="text-lg" /> */}
 
       <Popover
         triggerComponent={
           <Button
             label="Customize"
             variant="ghost"
-            className="text-lg"
+            className="app_layout_content_main_navbar_actions-item"
+            iconClassName="hidden md:block"
             icon={SettingsIcon}
             iconDimension="1.1rem"
           />
@@ -37,7 +41,7 @@ const NavActions = () => {
         <Settings />
       </Popover>
 
-      {!!timer && !!rest && !!longRest && (
+      {!!timer || !!rest || !!longRest ? (
         <Dialog
           dialogTitle="Restart Session"
           dialogDescription={`Are you sure you want to restart your session?`}
@@ -45,24 +49,26 @@ const NavActions = () => {
           confirmAction={() => setSessionState(sessionCountInitialState)}
         >
           <Button
-            label="Restart Session"
+            label="Restart~Session"
             variant="ghost"
-            className="text-lg gap-1!"
+            iconClassName="hidden md:block"
+            className="app_layout_content_main_navbar_actions-item"
             icon={RestartIcon}
             iconDimension="2rem"
           />
         </Dialog>
+      ) : (
+        <Button
+          label="Restart~Session"
+          variant="ghost"
+          className="text-lg gap-1!"
+          iconClassName="hidden md:display-block"
+          icon={RestartIcon}
+          iconDimension="2rem"
+          onClick={() => alert("You have no recorded session")}
+        />
       )}
-      <Button
-        label="Restart Session"
-        variant="ghost"
-        className="text-lg gap-1!"
-        icon={RestartIcon}
-        iconDimension="2rem"
-        onClick={() => alert("You have no recorded session")}
-      />
-
-      <Popover
+      {/*  <Popover
         triggerComponent={
           <Button
             label="EN"
@@ -74,7 +80,7 @@ const NavActions = () => {
         }
       >
         <Languages />
-      </Popover>
+      </Popover> */}
     </div>
   );
 };
@@ -90,9 +96,18 @@ const NavBar = () => {
     displayTitle = "Todo Tasks";
   }
 
+  const { dhexFocus } = SVGIcons;
+
   return (
     <header className="app_layout_content_main_navbar">
-      <h2 className="app_layout_content_main_navbar_title">{displayTitle}</h2>
+      <h2 className="app_layout_content_main_navbar-title">{displayTitle}</h2>
+      <Image
+        className="app_layout_content_main_navbar-mobile "
+        width={16}
+        height={16}
+        src={dhexFocus}
+        alt={"App Logo"}
+      />
       <NavActions />
     </header>
   );

@@ -1,11 +1,9 @@
-:root {
-  --sidebar-w: 200px;
-  --navbar-h: 63px;
-}
+@use "public/sass/abstracts/index" as *;
 
 .app_layout {
   background-color: #f2f2f2;
   height: 100%;
+  width: 100%;
   min-height: 100vh;
   font-size: 14px;
   font-family: system-ui, sans-serif;
@@ -23,6 +21,10 @@
       padding: 20px 1.5rem;
       height: 100%;
       border-right: 1px solid #cbd5e1;
+
+      @include screen("lg") {
+        display: none;
+      }
 
       &_logo {
         margin: auto;
@@ -84,20 +86,55 @@
       &_navbar {
         display: flex;
         justify-content: space-between;
-        height: var(--navbar-h);
+        height: $navbar-h;
         width: 100%;
-        // background-color: aqua;
         padding: 1.2rem;
         border-bottom: 1px solid #cbd5e1;
 
-        &_title {
-          font-size: 1.4rem;
-          font-weight: 600;
+        @include screen("md", true) {
+          padding: 0.5rem;
+        }
+
+        &-title {
+          font-size: 1.3rem;
+          font-weight: 700;
+
+          @include screen("md", true) {
+            display: none;
+          }
+        }
+
+        &-mobile {
+          cursor: pointer;
+
+          display: none;
+
+          @include screen("md") {
+            display: flex;
+            width: auto;
+          }
         }
 
         &_actions {
           display: flex;
           gap: 1rem;
+          height: 100%;
+          align-items: center;
+
+          @include screen("md") {
+            gap: 2rem;
+            margin-right: 1rem;
+
+            &-item {
+              padding: 0.5rem;
+              font-weight: 600 !important;
+            }
+
+            button {
+              font-size: medium;
+              padding-inline: 0.2rem !important;
+            }
+          }
         }
       }
     }

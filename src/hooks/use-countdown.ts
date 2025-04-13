@@ -13,12 +13,8 @@ import {
   useBrowserNotification,
   usePersistedState,
 } from ".";
-import {
-  TimeType,
-  TimeValues,
-  pomodoroStage,
-  sessionCountInitialState,
-} from "@/lib/utils/static";
+import { TimeType, TimeValues, pomodoroStage } from "@/lib/utils/static";
+import { sessionCountInitialState } from "@/store/timer/state";
 
 interface IuseCountdownProp {
   setActiveTab: Dispatch<SetStateAction<TimeType>>;

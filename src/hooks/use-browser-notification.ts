@@ -17,7 +17,11 @@ const useBrowserNotificaton = () => {
   } = usePomodoroContext();
 
   useEffect(() => {
-    setNotificationPermission(Notification.permission === "granted");
+    if (typeof window !== "undefined" && "Notification" in window) {
+      setNotificationPermission(Notification.permission === "granted");
+    } else {
+      setNotificationPermission(false); // or null, depending on your logic
+    }
   }, [notifications]);
 
   const requestPermission = async () => {

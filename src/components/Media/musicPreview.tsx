@@ -135,7 +135,7 @@ const MusicPreview: FC<MusicPreviewProps> = ({ tracks = lofiSound }) => {
           <Button
             variant="ghost"
             iconDimension="1.5rem"
-            className="control-button"
+            className="hidden md:inline"
             aria-label="Previous track"
             icon={ExpandIcon}
           />

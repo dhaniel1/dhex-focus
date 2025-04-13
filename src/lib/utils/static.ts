@@ -111,12 +111,6 @@ export const ErrorMessages = {
     `Your ${label} must not be more than ${length} characters`,
 };
 
-export const sessionCountInitialState = {
-  timer: 0,
-  rest: 0,
-  longRest: 0,
-};
-
 export const lofiSound = [
   {
     title: "Lofi 1",

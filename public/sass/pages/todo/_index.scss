@@ -1,10 +1,10 @@
-// @use "../landing/index" as *;
+@use "public/sass/abstracts/index" as *;
 
 .app_todo {
   width: 100%;
   height: 100%;
   display: block;
-  max-height: calc(100vh - var(--navbar-h));
+  max-height: calc(100vh - $navbar-h);
 
   &_container {
     display: flex;
@@ -38,7 +38,7 @@
         &_list {
           overflow-y: scroll;
           padding-inline: 2px;
-          height: calc(70vh - var(--navbar-h));
+          height: calc(70vh - $navbar-h);
           border-radius: 0.5rem;
 
           // max-height: 40rem;

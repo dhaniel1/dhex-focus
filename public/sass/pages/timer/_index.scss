@@ -1,17 +1,38 @@
+@use "public/sass/abstracts/index" as *;
+@use "public/sass/pages/landing/index" as *;
+
 .app_timer {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - $navbar-h - 0.5rem);
   margin: auto;
   display: flex;
 
   &_main {
+    position: relative;
     width: 80%;
+    height: 100%;
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include screen("lg") {
+      width: 100%;
+      gap: rem;
+    }
 
     &_intro {
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 2.5rem auto;
+
+      @include screen("sm") {
+        button {
+          font-size: 1rem !important;
+        }
+      }
     }
 
     &_tabs {
@@ -19,7 +40,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-top: auto;
     }
 
     &_body {
@@ -39,6 +59,11 @@
         align-items: center;
         background-color: rgba(236, 244, 255, 0.6);
 
+        @include screen("sm") {
+          height: 15rem;
+          width: 15rem;
+        }
+
         &:hover {
           cursor: pointer;
           background-color: rgba(236, 244, 255, 1);
@@ -50,6 +75,10 @@
 
           .timer {
             font-size: 6rem;
+
+            @include screen("sm") {
+              font-size: 3rem;
+            }
           }
 
           .level {
@@ -61,6 +90,8 @@
 
     &_media {
       display: flex;
+      // position: absolute;
+
       align-items: flex-end;
       justify-content: center;
       height: 10rem;
@@ -75,6 +106,10 @@
         background-color: #f5f6f7;
         padding: 1rem;
         border-radius: 4px;
+
+        @include screen("md") {
+          margin-top: auto !important;
+        }
 
         &_media_groups {
           display: flex;
@@ -142,5 +177,9 @@
     border-left: 1px solid #cbd5e1;
     margin-top: 5px;
     padding: 1rem;
+
+    @include screen("lg") {
+      display: none;
+    }
   }
 }
