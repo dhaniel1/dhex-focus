@@ -18,8 +18,6 @@ const NavActions = () => {
     setSessionState,
   } = useSessionContext();
 
-  console.log(timer, rest, longRest);
-
   const { SettingsIcon, RestartIcon /* GlobeIcon */ } = SVGIcons;
 
   return (
