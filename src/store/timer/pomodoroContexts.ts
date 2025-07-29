@@ -20,12 +20,12 @@ export const PomodoroContext = createContext<IPomodoroContext>({
 });
 
 export const usePomodoroContext = () => {
-  const context = useContext(PomodoroContext);
+  const ctx = useContext(PomodoroContext);
 
-  if (context === undefined)
+  if (ctx === undefined)
     throw new Error("pomodoroContext was used outside of the pomodoroProvider");
 
-  return context;
+  return ctx;
 };
 
 interface ISessionContext {
@@ -57,11 +57,11 @@ export const SessionContext = createContext<ISessionContext>({
 });
 
 export const useSessionContext = () => {
-  const context = useContext(SessionContext);
+  const ctx = useContext(SessionContext);
 
-  if (context === undefined) {
-    throw new Error("pomodoroContext was used outside of the SessionProvider");
+  if (ctx === undefined) {
+    throw new Error("sessionContext was used outside of the SessionProvider");
   }
 
-  return context;
+  return ctx;
 };
