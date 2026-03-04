@@ -15,7 +15,6 @@ import { SVGIcons } from "@/lib/assets";
 const extra = [
   { label: "Skip to break", action: "rest" },
   { label: "Skip to long break", action: "longRest" },
-  ,
 ];
 
 const Settings: FC = () => {

@@ -2,7 +2,7 @@
 
 import { FC, ReactNode, useEffect, useReducer, useState } from "react";
 import { useCountdown, usePersistedState } from "@/hooks";
-import { TimeType } from "@/lib/utils/static";
+import { music, TimeType } from "@/lib/utils/static";
 import {
   PomodoroContext,
   SessionContext,
@@ -57,7 +57,7 @@ export const SessionProvider: FC<Iprop> = ({ children }) => {
         setActiveTab,
         sessionState,
         setSessionState,
-        music: "Lofi",
+        music,
         formattedTime,
       }}
     >

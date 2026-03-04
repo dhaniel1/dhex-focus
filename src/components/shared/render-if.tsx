@@ -1,11 +1,11 @@
 import React, { Fragment, type ReactNode } from "react";
 
-interface IProps {
+interface RenderIfProps {
   children: ReactNode;
   condition: boolean;
 }
 
-export function RenderIf(props: IProps) {
+export function RenderIf(props: RenderIfProps) {
   const { condition, children } = props;
 
   if (!condition) {

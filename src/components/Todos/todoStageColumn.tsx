@@ -5,6 +5,7 @@ import { DraggableAndDropable } from "../Dnd";
 
 import { capitalize, cn } from "@/lib/utils";
 import { type TodoItem, type TodoStage } from "@/store/todos";
+import { ItemType } from "@/lib/utils/static";
 
 interface ITodoColumn {
   stage: TodoStage;
@@ -15,7 +16,7 @@ interface ITodoColumn {
     toStage: TodoStage,
     fromIndex: number,
     item: TodoItem,
-    toIndex: number
+    toIndex: number,
   ) => void;
 }
 
@@ -28,7 +29,7 @@ const TodoStageColumn: FC<ITodoColumn> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   const [{ isOver }, drop] = useDrop({
-    accept: "TODO_ITEM",
+    accept: ItemType,
     drop: (item: {
       data: TodoItem;
       arrayIndex: number;

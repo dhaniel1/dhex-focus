@@ -1,3 +1,5 @@
+"use client";
+
 import { useAudio } from "@/hooks";
 import { createContext, useContext } from "react";
 

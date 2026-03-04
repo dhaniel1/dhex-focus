@@ -54,7 +54,7 @@ const TaskForm: FC<{
       return;
     }
 
-    if (type === TASKFORMTYPE.EDIT && dataIndex) {
+    if (type === TASKFORMTYPE.EDIT && dataIndex && editData) {
       dispatch({
         type: TODOACTIONTYPE.UpdateTodo,
         payload: {
@@ -62,7 +62,7 @@ const TaskForm: FC<{
           updatedTodoItem: {
             description: data.description,
             todoStage: data.stage as TodoStage,
-            id: editData?.id as number,
+            id: editData.id,
           },
         },
       });

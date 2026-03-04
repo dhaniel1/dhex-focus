@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, ReactNode, useReducer } from "react";
 import { TodoContext } from "./todosContexts";
 import { TodoReducer } from "./todoReducers";

@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import useAlarm from "./use-alarm";
 import { usePomodoroContext } from "@/store";
 
+// Auto-close after 6 seconds
+const playDuration = 6;
+
 const useBrowserNotificaton = () => {
   const [notificationPermission, setNotificationPermission] = useState<
     boolean | undefined
@@ -60,8 +63,6 @@ const useBrowserNotificaton = () => {
       return { isPlaying: true, duration: playDuration };
     });
 
-    // Auto-close after 6 seconds
-    const playDuration = 6;
     const timeout = setTimeout(() => {
       notification.close();
       playAlarm((prevVal) => {

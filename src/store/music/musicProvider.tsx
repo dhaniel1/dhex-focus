@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, ReactNode } from "react";
 import { MusicContext } from "./musicContext";
 import { useAudio } from "@/hooks";

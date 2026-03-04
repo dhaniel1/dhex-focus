@@ -2,8 +2,9 @@ import React, { FC, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { TodoItem, TodoStage } from "@/store/todos";
 import { TodoTablet } from "../Todos";
+import { ItemType } from "@/lib/utils/static";
 
-interface ITodoTablet {
+interface DraggableAndDropableProps {
   data: TodoItem;
   isPreview?: boolean;
   arrayIndex: number;
@@ -13,7 +14,7 @@ interface ITodoTablet {
     toStage: TodoStage,
     fromIndex: number,
     item: TodoItem,
-    toIndex: number
+    toIndex: number,
   ) => void;
 }
 
@@ -24,9 +25,7 @@ interface DragItem {
   id: number;
 }
 
-const ItemType = "TODO_ITEM";
-
-const DraggableAndDropable: FC<ITodoTablet> = ({
+const DraggableAndDropable: FC<DraggableAndDropableProps> = ({
   data,
   arrayIndex,
   currentStage,
@@ -67,7 +66,7 @@ const DraggableAndDropable: FC<ITodoTablet> = ({
           currentStage,
           item.arrayIndex,
           item.data,
-          arrayIndex // The actual index where we want to insert
+          arrayIndex, // The actual index where we want to insert
         );
 
         // Update the item's index and stage

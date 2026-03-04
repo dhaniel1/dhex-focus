@@ -18,11 +18,11 @@ interface TabItem {
   label?: string;
 }
 
-interface IProps {
+interface TabsProps {
   tabs: TabItem[];
 }
 
-const Tabs: FC<IProps> = ({ tabs }) => {
+const Tabs: FC<TabsProps> = ({ tabs }) => {
   const mounted = useMounted();
   const {
     state: { focusLevel },
@@ -61,7 +61,7 @@ const Tabs: FC<IProps> = ({ tabs }) => {
                 {
                   "text-[#2463EB]": value === "timer",
                   "border-b-1": value === activeTab,
-                }
+                },
               )}
             >
               <>
@@ -82,7 +82,7 @@ const Tabs: FC<IProps> = ({ tabs }) => {
               <div
                 className={cn(
                   "app_timer_main_body_pomodoro text-[#069668] border-[#D5EAE1]",
-                  [value === "timer" && "text-[#2463EB] border-[#d5e0fb]"]
+                  [value === "timer" && "text-[#2463EB] border-[#d5e0fb]"],
                 )}
               >
                 <div className="app_timer_main_body_pomodoro_content">

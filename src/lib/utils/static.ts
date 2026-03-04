@@ -3,6 +3,9 @@ import { Itab } from "@/components/SideNav";
 import { images, SVGIcons } from "@/lib/assets";
 import { sounds } from "../assets";
 
+export const music = "Lofi";
+export const ItemType = "TODO_ITEM";
+
 const {
   AlarmIcon,
   ClockBoldIcon,
@@ -45,8 +48,9 @@ export enum TIMETYPE {
   LONGREST = "longRest",
 }
 
-export type FocusLevelType = "baby step" | "popular" | "medium" | "extended";
 export type TimeType = `${TIMETYPE}`;
+
+export type FocusLevelType = "baby step" | "popular" | "medium" | "extended";
 
 // Define the structure for time values
 export type TimeValues = {

@@ -12,7 +12,7 @@ import {
 import { RenderIf } from "../shared";
 import { cn } from "@/lib/utils";
 
-interface IProps {
+interface SelectProps {
   placeholder?: string;
   label?: string;
   selectData: Array<{ value: string; label: string }>;
@@ -21,7 +21,7 @@ interface IProps {
   onChange: (value: string) => void;
 }
 
-const Select = (props: IProps) => {
+const Select = (props: SelectProps) => {
   const {
     placeholder,
     selectData,

@@ -7,11 +7,11 @@ const useActiveFocusLevel = () => {
   } = usePomodoroContext();
 
   const activeFocusLevel = focusLevels.find(
-    (item) => Object.keys(item)[0] === focusLevel
+    (item) => Object.keys(item)[0] === focusLevel,
   );
 
   const activeFocusLevelValues =
-    activeFocusLevel![focusLevel as FocusLevelType];
+    activeFocusLevel?.[focusLevel as FocusLevelType];
 
   return { activeFocusLevelValues, focusLevel };
 };

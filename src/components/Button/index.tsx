@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"; // ShadCN's cn utility
 import { Button as ShadCNButton } from "@/components/ui/button";
 import { Loader } from "..";
 
-interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
   loading?: boolean;
   iconClassName?: string;
@@ -39,7 +39,7 @@ const Button = ({
   iconAfterDimension = "16px",
   type = "button",
   ...rest
-}: IButton) => {
+}: ButtonProps) => {
   return (
     <ShadCNButton
       disabled={loading || disabled}
@@ -51,7 +51,7 @@ const Button = ({
             disabled,
           "cursor-progress opacity-85": loading,
         },
-        className
+        className,
       )}
       {...rest}
     >

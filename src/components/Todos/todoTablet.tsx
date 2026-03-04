@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { TodoActions } from ".";
 import { TodoItem } from "@/store/todos";
 
-interface ITodoTablet extends HTMLAttributes<HTMLDivElement> {
+interface DraggableAndDropableProps extends HTMLAttributes<HTMLDivElement> {
   data: TodoItem;
   arrayIndex: number;
 
@@ -14,10 +14,10 @@ interface ITodoTablet extends HTMLAttributes<HTMLDivElement> {
   isDragging?: boolean;
 }
 
-const TodoTablet = forwardRef<HTMLDivElement, ITodoTablet>(
+const TodoTablet = forwardRef<HTMLDivElement, DraggableAndDropableProps>(
   (
     { isDragging, isOver, data, arrayIndex, className, isPreview = false },
-    ref
+    ref,
   ) => {
     const [showActions, setShowActions] = useState<boolean>(false);
 
@@ -33,7 +33,7 @@ const TodoTablet = forwardRef<HTMLDivElement, ITodoTablet>(
             "bg-blue-50": isOver,
             "bg-white": !isOver && !isDragging,
           },
-          className
+          className,
         )}
       >
         {isPreview && (
@@ -47,7 +47,7 @@ const TodoTablet = forwardRef<HTMLDivElement, ITodoTablet>(
         </label>
       </div>
     );
-  }
+  },
 );
 
 TodoTablet.displayName = "TodoTablet";

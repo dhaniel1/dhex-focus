@@ -1,8 +1,10 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { alarms, ALARMTYPE } from "@/lib/utils/static";
 import { usePomodoroContext } from "@/store";
 
-const useAlarm = () => {
+export default function useAlarm() {
   const [{ isPlaying, duration }, setPlay] = useState({
     isPlaying: false,
     duration: 3,
@@ -32,7 +34,7 @@ const useAlarm = () => {
       }
     },
 
-    [alarm?.audioSrc, soundType]
+    [alarm?.audioSrc, soundType],
   );
 
   useEffect(
@@ -42,7 +44,7 @@ const useAlarm = () => {
       }
     },
 
-    [alarmVolumeLevel]
+    [alarmVolumeLevel],
   );
 
   useEffect(
@@ -63,10 +65,10 @@ const useAlarm = () => {
       return () => clearTimeout(timeout);
     },
 
-    [isPlaying, alarm?.audioSrc, duration]
+    [isPlaying, alarm?.audioSrc, duration],
   );
 
   return setPlay;
-};
+}
 
-export default useAlarm;
+useAlarm;

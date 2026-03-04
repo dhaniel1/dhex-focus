@@ -23,7 +23,7 @@ interface IuseCountdownProp {
 
 const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
   const { activeFocusLevelValues } = useActiveFocusLevel();
-  const totalTime /* in seconds */ = activeFocusLevelValues![activeTab] * 60;
+  const totalTime /* in seconds */ = (activeFocusLevelValues?.[activeTab] ?? 0) * 60;
   const [timeRemaining, setTimeRemaining] = useState(totalTime);
   const [isActive, setIsActive] = useState(false);
   const [persistedState, setPersistedState] = usePersistedState<TimeValues>(
