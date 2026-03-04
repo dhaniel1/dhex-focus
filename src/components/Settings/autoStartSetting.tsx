@@ -1,8 +1,8 @@
 "use client";
 
-import { usePomodoroContext } from "@/store";
-import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
+import { POMODOROACTIONTYPE } from "@/store/reducers/pomodoro/pomodoroActions";
 import { Switch } from "..";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 export default function AutoStartSetting() {
   const {

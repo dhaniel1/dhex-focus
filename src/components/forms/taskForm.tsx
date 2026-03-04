@@ -13,11 +13,18 @@ import { Button } from "..";
 import { DialogFooter, DialogClose } from "../ui/dialog";
 import TextArea from "../TextArea";
 import FormSelect from "../Select";
-import { TodoItem, TodoStage, TODOSTAGE, useTodoContext } from "@/store/todos";
+
 import { capitalize } from "@/lib/utils";
-import { TODOACTIONTYPE } from "@/store/todos/todoActions";
+
 import { FC } from "react";
 import { TASKFORMTYPE, TaskFormType } from "@/lib/utils/static";
+import {
+  TodoItem,
+  TodoStage,
+  TODOSTAGE,
+  useTodoContext,
+} from "@/store/reducers/todos";
+import { TODOACTIONTYPE } from "@/store/reducers/todos/todoActions";
 
 const selectObj = [
   { value: TODOSTAGE.TODO, label: capitalize(TODOSTAGE.TODO) },

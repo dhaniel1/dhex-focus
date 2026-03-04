@@ -7,10 +7,10 @@ import { routes } from "@/lib/routes";
 // import Languages from "../Language";
 import Dialog from "../Dialog";
 
-import { useSessionContext } from "@/store";
 import { SVGIcons } from "@/lib/assets";
 import Image from "next/image";
-import { sessionCountInitialState } from "@/store/timer/state";
+import { sessionCountInitialState } from "@/lib/utils/static";
+import { useSessionContext } from "@/store/contexts/session/context";
 
 const NavActions = () => {
   const {

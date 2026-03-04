@@ -7,14 +7,19 @@ import {
   useRef,
   useState,
 } from "react";
-import { usePomodoroContext } from "@/store";
+
 import {
   useActiveFocusLevel,
   useBrowserNotification,
   usePersistedState,
 } from ".";
-import { TimeType, TimeValues, pomodoroStage } from "@/lib/utils/static";
-import { sessionCountInitialState } from "@/store/timer/state";
+import {
+  TimeType,
+  TimeValues,
+  pomodoroStage,
+  sessionCountInitialState,
+} from "@/lib/utils/static";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 interface IuseCountdownProp {
   setActiveTab: Dispatch<SetStateAction<TimeType>>;
@@ -23,12 +28,13 @@ interface IuseCountdownProp {
 
 const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
   const { activeFocusLevelValues } = useActiveFocusLevel();
-  const totalTime /* in seconds */ = (activeFocusLevelValues?.[activeTab] ?? 0) * 60;
+  const totalTime /* in seconds */ =
+    (activeFocusLevelValues?.[activeTab] ?? 0) * 60;
   const [timeRemaining, setTimeRemaining] = useState(totalTime);
   const [isActive, setIsActive] = useState(false);
   const [persistedState, setPersistedState] = usePersistedState<TimeValues>(
     "session-count",
-    sessionCountInitialState
+    sessionCountInitialState,
   );
   const [sessionState, setSessionState] = useState<TimeValues>(persistedState);
 
@@ -48,7 +54,7 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
     function () {
       setTimeRemaining(totalTime);
     },
-    [totalTime]
+    [totalTime],
   );
 
   useEffect(
@@ -59,14 +65,14 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
         });
       }
     },
-    [activeTab, eightyPercentThreshold, timeRemaining, totalTime]
+    [activeTab, eightyPercentThreshold, timeRemaining, totalTime],
   );
 
   useEffect(
     function () {
       setPersistedState(() => sessionState);
     },
-    [sessionState, setPersistedState]
+    [sessionState, setPersistedState],
   );
 
   useEffect(() => {
@@ -77,7 +83,7 @@ const useCountdown = ({ activeTab, setActiveTab }: IuseCountdownProp) => {
             showNotification(activeTab);
             if (breaks) {
               const activeStageIndex = pomodoroStage.findIndex(
-                (value) => value === activeTab
+                (value) => value === activeTab,
               );
 
               if (activeStageIndex + 1 < pomodoroStage.length) {

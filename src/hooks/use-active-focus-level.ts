@@ -1,5 +1,5 @@
 import { focusLevels, FocusLevelType } from "@/lib/utils/static";
-import { usePomodoroContext } from "@/store";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 const useActiveFocusLevel = () => {
   const {

@@ -1,10 +1,11 @@
 import { TASKFORMTYPE } from "@/lib/utils/static";
-import { TodoItem, useTodoContext } from "@/store/todos";
-import { TODOACTIONTYPE } from "@/store/todos/todoActions";
+
 import { TaskForm } from "../forms";
 import Dialog from "../Dialog";
 import DeleteDialogContent from "./deleteDialog";
 import { SVGIcons } from "@/lib/assets";
+import { TODOACTIONTYPE } from "@/store/reducers/todos/todoActions";
+import { TodoItem, useTodoContext } from "@/store/reducers/todos";
 
 const TodoActions = ({
   data,

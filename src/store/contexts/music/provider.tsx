@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, ReactNode } from "react";
-import { MusicContext } from "./musicContext";
+import { MusicContext } from "./context";
 import { useAudio } from "@/hooks";
 import { lofiSound } from "@/lib/utils/static";
 

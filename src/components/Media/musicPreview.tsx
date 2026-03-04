@@ -9,7 +9,7 @@ import { Progress } from "../ui/progress";
 import Button from "../Button";
 import MusicMedia from "./musicMedia";
 import Drawer from "../Drawer ";
-import useMusicContext from "@/store/music/musicContext";
+import useMusicContext from "@/store/contexts/music/context";
 
 type Track = {
   title: string;

@@ -1,14 +1,14 @@
 import React from "react";
-import { TodoItem, TodoStage, useTodoContext } from "@/store/todos";
 
 import Button from "../Button";
 
-import { TODOACTIONTYPE } from "@/store/todos/todoActions";
 import Dialog from "../Dialog";
 import { TaskForm } from "../forms";
 import { TASKFORMTYPE } from "@/lib/utils/static";
 import { TodoStageColumn } from ".";
 import { SVGIcons } from "@/lib/assets";
+import { TODOACTIONTYPE } from "@/store/reducers/todos/todoActions";
+import { TodoItem, TodoStage, useTodoContext } from "@/store/reducers/todos";
 
 const TaskBoard = () => {
   const { state: todoState, dispatch } = useTodoContext();
@@ -19,7 +19,7 @@ const TaskBoard = () => {
     toStage: TodoStage,
     fromIndex: number,
     item: TodoItem,
-    toIndex: number
+    toIndex: number,
   ) => {
     // If moving within the same stage, just reorder
     if (fromStage === toStage) {

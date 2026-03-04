@@ -1,34 +1,14 @@
 "use client";
 
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
+
 import {
-  type PomodoroState,
-  initialPomodoroState,
   sessionCountInitialState,
-} from "./state";
-import { PomodoroActions } from "./pomodoroActions";
-import { TimeType, TimeValues } from "@/lib/utils/static";
+  TimeType,
+  TimeValues,
+} from "@/lib/utils/static";
 
-interface IPomodoroContext {
-  state: PomodoroState;
-  dispatch: React.Dispatch<PomodoroActions>;
-}
-
-export const PomodoroContext = createContext<IPomodoroContext>({
-  state: initialPomodoroState,
-  dispatch: () => undefined,
-});
-
-export const usePomodoroContext = () => {
-  const ctx = useContext(PomodoroContext);
-
-  if (ctx === undefined)
-    throw new Error("pomodoroContext was used outside of the pomodoroProvider");
-
-  return ctx;
-};
-
-interface ISessionContext {
+interface SessionContext {
   formattedTime: string;
   isActive: boolean;
   music: string;
@@ -44,7 +24,7 @@ interface ISessionContext {
   setActiveTab: Dispatch<SetStateAction<TimeType>>;
 }
 
-export const SessionContext = createContext<ISessionContext>({
+export const SessionContext = createContext<SessionContext>({
   music: "",
   isActive: false,
   activeTab: "rest",

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { alarms, ALARMTYPE } from "@/lib/utils/static";
-import { usePomodoroContext } from "@/store";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 export default function useAlarm() {
   const [{ isPlaying, duration }, setPlay] = useState({

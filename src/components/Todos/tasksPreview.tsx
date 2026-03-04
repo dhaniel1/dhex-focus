@@ -4,15 +4,16 @@ import React from "react";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
-import { TODOSTAGE, useTodoContext } from "@/store/todos";
+
 import { TasksInProgress } from ".";
+import { TODOSTAGE, useTodoContext } from "@/store/reducers/todos";
 
 const TasksPreview = () => {
   const router = useRouter();
   const { state } = useTodoContext();
 
   const inProgress = state.find(
-    (stateItem) => stateItem.stage === TODOSTAGE.INPROGRESS
+    (stateItem) => stateItem.stage === TODOSTAGE.INPROGRESS,
   );
 
   return (

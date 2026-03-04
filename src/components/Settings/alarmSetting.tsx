@@ -2,11 +2,12 @@
 
 import React, { FC } from "react";
 import Button from "../Button";
-import { usePomodoroContext } from "@/store";
-import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
+
+import { POMODOROACTIONTYPE } from "@/store/reducers/pomodoro/pomodoroActions";
 import { capitalize, cn } from "@/lib/utils";
 import { Alarms, alarms, ALARMTYPE } from "@/lib/utils/static";
 import { useAlarm } from "@/hooks";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
   const {
@@ -45,7 +46,7 @@ const SoundsButton: FC<{ alarms: Alarms }> = ({ alarms }) => {
               {
                 "bg-accent font-bold text-accent-foreground":
                   soundType.toLowerCase() == title.toLowerCase(),
-              }
+              },
             )}
           >
             {capitalize(title)}

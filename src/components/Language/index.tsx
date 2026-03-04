@@ -3,10 +3,10 @@
 import React from "react";
 import Button from "../Button";
 import { language } from "@/lib/utils/static";
-import { usePomodoroContext } from "@/store";
 
-import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
+import { POMODOROACTIONTYPE } from "@/store/reducers/pomodoro/pomodoroActions";
 import { SVGIcons } from "@/lib/assets";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 const Languages = () => {
   const {

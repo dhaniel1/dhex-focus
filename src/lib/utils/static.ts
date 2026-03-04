@@ -173,3 +173,9 @@ export function getNotificationDetails(title: TimeType): NotificationDetails {
       return { title: "Unknown", body: "Not sure what to do" };
   }
 }
+
+export const sessionCountInitialState = {
+  timer: 3,
+  rest: 0,
+  longRest: 0,
+};

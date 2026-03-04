@@ -9,8 +9,9 @@ import AlarmSettings from "./alarmSetting";
 import AutoStartSetting from "./autoStartSetting";
 import NotificationSetting from "./notificationSetting";
 import { Separator } from "../ui/separator";
-import { useSessionContext } from "@/store/timer/pomodoroContexts";
+
 import { SVGIcons } from "@/lib/assets";
+import { useSessionContext } from "@/store/contexts/session/context";
 
 const extra = [
   { label: "Skip to break", action: "rest" },

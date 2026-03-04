@@ -7,7 +7,7 @@ import { SVGIcons } from "@/lib/assets";
 import Slider from "../Slider";
 import { Progress } from "../ui/progress";
 import Button from "../Button";
-import { useMusicContext } from "@/store/music";
+import { useMusicContext } from "@/store/contexts/music";
 
 type Track = {
   title: string;

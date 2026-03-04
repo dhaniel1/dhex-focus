@@ -3,10 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../../public/sass/main.scss";
 import "./globals.css";
 import { NavBar, SideNav } from "@/components";
-import { SessionProvider } from "@/store/timer/pomodoroProviders";
+
 import { PomodoroProvider } from "@/store";
-import { TodoProvider } from "@/store/todos/todoProviders";
-import { MusicProvider } from "@/store/music";
+
+import { MusicProvider } from "@/store/contexts/music";
+import { TodoProvider } from "@/store/reducers/todos/todoProviders";
+import { SessionProvider } from "@/store/contexts/session/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

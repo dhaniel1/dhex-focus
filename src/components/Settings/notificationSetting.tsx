@@ -1,9 +1,9 @@
 "use client";
 
-import { usePomodoroContext } from "@/store";
 import { Switch } from "..";
-import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
+import { POMODOROACTIONTYPE } from "@/store/reducers/pomodoro/pomodoroActions";
 import { useBrowserNotification } from "@/hooks";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 export default function NotificationSetting() {
   const {

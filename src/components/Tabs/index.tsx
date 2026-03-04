@@ -11,7 +11,8 @@ import { capitalize, cn } from "@/lib/utils";
 import { TimeType } from "@/lib/utils/static";
 import { Button } from "..";
 import { useMounted } from "@/hooks";
-import { useSessionContext, usePomodoroContext } from "@/store/timer";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
+import { useSessionContext } from "@/store/contexts/session/context";
 
 interface TabItem {
   value: TimeType;

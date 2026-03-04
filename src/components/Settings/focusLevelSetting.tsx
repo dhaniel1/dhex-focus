@@ -1,9 +1,10 @@
 import { capitalize } from "@/lib/utils";
 import { focusLevels, FocusLevelType } from "@/lib/utils/static";
-import { usePomodoroContext } from "@/store";
-import { POMODOROACTIONTYPE } from "@/store/timer/pomodoroActions";
+
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
+import { POMODOROACTIONTYPE } from "@/store/reducers/pomodoro/pomodoroActions";
 
 const FocusLevelSetting = () => {
   const {
@@ -19,7 +20,7 @@ const FocusLevelSetting = () => {
       >
         <RadioGroup
           defaultValue={focusLevel}
-          onValueChange={(value) => {
+          onValueChange={(value: FocusLevelType) => {
             dispatch({
               type: POMODOROACTIONTYPE.UpdateFocusLevel,
               payload: value,

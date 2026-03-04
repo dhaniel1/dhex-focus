@@ -4,7 +4,7 @@ import { capitalize } from "@/lib/utils";
 import { getNotificationDetails, TimeType } from "@/lib/utils/static";
 import { useEffect, useRef, useState } from "react";
 import useAlarm from "./use-alarm";
-import { usePomodoroContext } from "@/store";
+import { usePomodoroContext } from "@/store/contexts/pomodoro";
 
 // Auto-close after 6 seconds
 const playDuration = 6;

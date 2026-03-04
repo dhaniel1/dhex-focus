@@ -1,9 +1,14 @@
 import React, { FC, useCallback } from "react";
 
 import { RadioGroup } from "../ui/radio-group";
-import { TODOSTAGE, TodoStateItem, useTodoContext } from "@/store/todos";
-import { TODOACTIONTYPE } from "@/store/todos/todoActions";
+
 import TodoTablet from "./todoTablet";
+import { TODOACTIONTYPE } from "@/store/reducers/todos/todoActions";
+import {
+  TODOSTAGE,
+  TodoStateItem,
+  useTodoContext,
+} from "@/store/reducers/todos";
 
 type ITasksInProgress = {
   inProgress: TodoStateItem | undefined;
@@ -33,7 +38,7 @@ const TasksInProgress: FC<ITasksInProgress> = ({ inProgress }) => {
         });
       }
     },
-    [dispatch, inProgress?.children]
+    [dispatch, inProgress?.children],
   );
 
   return (
