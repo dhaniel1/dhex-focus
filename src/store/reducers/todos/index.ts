@@ -12,6 +12,6 @@ export {
   type UpdateTodo,
   type DeleteTodo,
   type TodoActions,
-} from "./todoActions";
+} from "./actions";
 
-export { useTodoContext } from "./todosContexts";
+export { useTodoContext } from "../../contexts/todo/context";

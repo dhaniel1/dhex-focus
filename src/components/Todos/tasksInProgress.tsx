@@ -3,7 +3,7 @@ import React, { FC, useCallback } from "react";
 import { RadioGroup } from "../ui/radio-group";
 
 import TodoTablet from "./todoTablet";
-import { TODOACTIONTYPE } from "@/store/reducers/todos/todoActions";
+import { TODOACTIONTYPE } from "@/store/reducers/todos/actions";
 import {
   TODOSTAGE,
   TodoStateItem,

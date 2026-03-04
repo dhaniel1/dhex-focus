@@ -7,7 +7,7 @@ import { TaskForm } from "../forms";
 import { TASKFORMTYPE } from "@/lib/utils/static";
 import { TodoStageColumn } from ".";
 import { SVGIcons } from "@/lib/assets";
-import { TODOACTIONTYPE } from "@/store/reducers/todos/todoActions";
+import { TODOACTIONTYPE } from "@/store/reducers/todos/actions";
 import { TodoItem, TodoStage, useTodoContext } from "@/store/reducers/todos";
 
 const TaskBoard = () => {

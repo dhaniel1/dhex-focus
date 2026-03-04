@@ -1,9 +1,9 @@
 import { TodoActions, TodoState } from ".";
-import { TODOACTIONTYPE } from "./todoActions";
+import { TODOACTIONTYPE } from "./actions";
 
 export const TodoReducer = function (
   state: TodoState,
-  action: TodoActions
+  action: TodoActions,
 ): TodoState {
   switch (action.type) {
     /* Creates a new todo Item */

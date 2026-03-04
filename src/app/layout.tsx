@@ -7,7 +7,7 @@ import { NavBar, SideNav } from "@/components";
 import { PomodoroProvider } from "@/store";
 
 import { MusicProvider } from "@/store/contexts/music";
-import { TodoProvider } from "@/store/reducers/todos/todoProviders";
+import { TodoProvider } from "@/store/contexts/todo/provider";
 import { SessionProvider } from "@/store/contexts/session/provider";
 
 const geistSans = Geist({

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { initialTodoState, TodoActions, TodoState } from "./";
+import { initialTodoState, TodoActions, TodoState } from "../../reducers/todos";
 
 interface ITodoContext {
   state: TodoState;

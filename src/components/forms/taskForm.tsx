@@ -24,7 +24,7 @@ import {
   TODOSTAGE,
   useTodoContext,
 } from "@/store/reducers/todos";
-import { TODOACTIONTYPE } from "@/store/reducers/todos/todoActions";
+import { TODOACTIONTYPE } from "@/store/reducers/todos/actions";
 
 const selectObj = [
   { value: TODOSTAGE.TODO, label: capitalize(TODOSTAGE.TODO) },

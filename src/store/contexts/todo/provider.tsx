@@ -1,9 +1,9 @@
 "use client";
 
 import { FC, ReactNode, useReducer } from "react";
-import { TodoContext } from "./todosContexts";
-import { TodoReducer } from "./todoReducers";
-import { initialTodoState } from "./state";
+import { TodoContext } from "./context";
+import { TodoReducer } from "../../reducers/todos/reducer";
+import { initialTodoState } from "../../reducers/todos/state";
 interface Iprop {
   children: ReactNode;
 }
