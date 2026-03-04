@@ -3,7 +3,7 @@ import { RadioGroupItem } from "../ui/radio-group";
 
 import { cn } from "@/lib/utils";
 import { TodoActions } from ".";
-import { TodoItem } from "@/store/todos";
+import { TodoItem } from "@/store/reducers/todos";
 
 interface DraggableAndDropableProps extends HTMLAttributes<HTMLDivElement> {
   data: TodoItem;

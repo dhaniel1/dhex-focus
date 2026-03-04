@@ -70,5 +70,3 @@ export default function useAlarm() {
 
   return setPlay;
 }
-
-useAlarm;

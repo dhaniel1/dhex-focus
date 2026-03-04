@@ -1,5 +1,5 @@
 import { capitalize } from "@/lib/utils";
-import { TodoItem } from "@/store/todos";
+import { TodoItem } from "@/store/reducers/todos";
 
 const DeleteDialogContent = ({ data }: { data: TodoItem }) => {
   return (

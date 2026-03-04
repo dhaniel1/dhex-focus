@@ -1,4 +1,4 @@
-import { TodoStage } from "@/store/todos";
+import { TodoStage } from "@/store/reducers/todos";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -30,7 +30,7 @@ export function getLocalStorage(key: string) {
 export function filterByProperty<T, K extends keyof T>(
   iterable: Array<T>,
   propertyName: K,
-  filterStage: TodoStage
+  filterStage: TodoStage,
 ) {
   return iterable.filter((item) => item[propertyName] === filterStage);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode, useState } from "react";
+import { FC, useState } from "react";
 import { useCountdown } from "@/hooks";
 import { music, TimeType } from "@/lib/utils/static";
 import { SessionContext } from "./context";

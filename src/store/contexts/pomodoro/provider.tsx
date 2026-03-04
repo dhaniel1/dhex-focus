@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode, useEffect, useReducer } from "react";
+import { FC, useEffect, useReducer } from "react";
 import { usePersistedState } from "@/hooks";
 import {
   PomodoroReducer,

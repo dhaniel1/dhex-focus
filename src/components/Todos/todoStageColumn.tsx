@@ -4,8 +4,9 @@ import { useDrop } from "react-dnd";
 import { DraggableAndDropable } from "../Dnd";
 
 import { capitalize, cn } from "@/lib/utils";
-import { type TodoItem, type TodoStage } from "@/store/todos";
+
 import { ItemType } from "@/lib/utils/static";
+import { type TodoItem, type TodoStage } from "@/store/reducers/todos";
 
 interface ITodoColumn {
   stage: TodoStage;

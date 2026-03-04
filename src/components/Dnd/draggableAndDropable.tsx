@@ -1,8 +1,8 @@
 import React, { FC, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { TodoItem, TodoStage } from "@/store/todos";
 import { TodoTablet } from "../Todos";
 import { ItemType } from "@/lib/utils/static";
+import { TodoItem, TodoStage } from "@/store/reducers/todos";
 
 interface DraggableAndDropableProps {
   data: TodoItem;
